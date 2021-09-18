@@ -1,0 +1,72 @@
+{
+    // https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
+ 
+    // c++, c
+    "clangd.enabled": true,
+    "clangd.disableSnippetCompletion": true,
+    "clangd.arguments": ["-fallback-style=WebKit"],
+    // "clangd.fallbackFlags": ["-std=gnu99"],
+    // "clangd.fallbackFlags": ["-std=c11"],
+    // "clangd.fallbackFlags": ["-std=c99"],
+    // "clangd.fallbackFlags": ["-std=c90"],
+    "clangd.fallbackFlags": ["-std=c++14"],
+
+    // json
+    // "json.enable": false,
+    "json.trace.server": "messages",
+    "json.format.enable": true,
+
+    // python
+    "python.pythonPath": "python3",
+
+    // rust
+    // "rust-analyzer.hoverActions.linksInHover": true,
+
+    // coc-lists
+    "list.normalMappings": {
+        "t": "action:tabe",
+        "v": "action:vsplit",
+        "s": "action:split",
+        "d": "expr:GetDeleteAction"
+    },
+    "list.insertMappings": {
+        "<C-t>": "action:tabe",
+        "<C-w>": "command:wincmd k"
+    },
+
+    // sh
+    "sh.enable": true,
+    // racket
+    "languageserver": {
+        "racket": {
+            "command": "racket",
+            "args": [
+                "--lib",
+                "racket-langserver"
+            ],
+            "filetypes": [
+                "scheme"
+            ]
+        }
+    },
+
+
+    // tabnine
+
+    // coc
+    // https://github.com/neoclide/coc.nvim/blob/release/doc/coc.txt
+    "suggest.labelMaxLength": 50,
+    "suggest.minTriggerInputLength": 2,
+    // "coc.preferences.hoverTarget": "float",
+    // "coc.preferences.previewAutoClose": false
+    // auto format
+    "coc.preferences.formatOnSaveFiletypes": ["rust", "python", "cpp"],
+    // "coc.preferences.formatOnSaveFiletypes": ["rust", "python"],
+    // 由于 coc-tabnine 使用，coc自带的buffer补全和arround补全可以禁用了
+    "coc.source.around.enable": true,
+    "coc.source.buffer.enable": true,
+    "coc.preferences.extensionUpdateCheck": "daily",
+    "suggest.enablePreview": true,
+    // "clangd.path": "/Users/qianlv/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd"
+    "clangd.path": "/home/qianlv/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd"
+}

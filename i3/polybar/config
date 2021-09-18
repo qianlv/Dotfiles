@@ -1,0 +1,354 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+;Material Icons: https://material.io/resources/icons/?style=baseline
+;Font Awesome: https://fontawesome.com/cheatsheet/free/solid
+
+[colors]
+;background = ${xrdb:color0:#222}
+background = #66222222
+background-alt = #444
+;foreground = ${xrdb:color7:#222}
+foreground = #fef8de
+foreground-alt = #fef8de
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/example]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 45
+; offset-x = 100
+; offset-y = 200
+radius = 15
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 0
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 1
+module-margin-right = 1
+
+border-left-size=11
+border-right-size=11
+
+; separator = |
+bottom = true
+enable-ipc = true
+
+font-0 = Source Han Sans CN:style=Medium:size=20;1
+; font-0 = SFNS Display:style=regular:size=20;1
+font-1 = unifont:fontformat=truetype:size=20:antialias=false;0
+font-2 = siji:size=20;1
+font-3 = Font Awesome 5 Free:size=20;2
+font-4 = Font Awesome 5 Free Solid:size=20;2
+font-5 = Font Awesome 5 Brands Regular:size=20;2
+font-6 = Material Icons:style=Regular:size=20;2
+
+modules-left = i3
+modules-center = music
+; modules-center = player-mpris-tail
+modules-right = updates-pacman-aurhelper eth wlan system-bluetooth-bluetoothctl pulseaudio-control memory date_custom keyboard
+module-margin = 2
+
+tray-position = none
+; tray-position = right
+tray-padding = 2
+tray-maxsize = 40
+tray-detached = false
+; tray-transparent = true
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+
+; override-redirect = false
+; wm-restack = i3
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+
+label-mode-padding = 3
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-background = #6f847d
+label-focused-underline= ${colors.primary}
+label-focused-padding = 3
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-padding = 3
+
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 3
+
+; Separator in between workspaces
+; label-separator = |
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #f90000
+label = %percentage:2%%
+; click-right = exec gnome-system-monitor
+
+[module/memory]
+type = internal/memory
+interval = 5
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground-alt}
+; format-underline = #4bffdc
+format = <label>
+label = %gb_used%
+; Only applies if <ramp-used> is used
+; ramp-used-0 = ▁
+; ramp-used-1 = ▂
+; ramp-used-2 = ▃
+; ramp-used-3 = ▄
+; ramp-used-4 = ▅
+; ramp-used-5 = ▆
+; ramp-used-6 = ▇
+; ramp-used-7 = █
+
+
+[module/wlan]
+type = internal/network
+interface = wlp33s0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = #9f78e1
+label-connected = %essid%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/eth]
+type = internal/network
+interface = enp34s0
+interval = 1.0
+
+format-connected-underline = #55aa55
+; format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+; label-connected = %local_ip%
+; format-connected-prefix = ""
+format-connected-suffix = "   "
+; label-connected = "%{O7}%downspeed%   %{O7}%upspeed%  "
+label-connected = "   %downspeed%"
+label-connected-alignment = right
+label-connected-maxlen = 13
+label-connected-minlen = 13
+
+
+format-disconnected = not connected
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = date
+interval = 1
+
+date = "   %Y-%m-%d"
+date-alt = "   %Y-%m-%d"
+
+time =   %H:%M:%S %a
+time-alt =   %H:%M:%S %a
+
+; format-prefix = " "
+; format-prefix-foreground = ${colors.foreground-alt}
+; format-underline = #0a6cf5
+; format = "  %Y-%m-%d  %H:%M:%S %A"
+
+label = %date% %time%
+
+[module/date_custom]
+type = custom/script
+; exec = date +"%Y-%m-%d %H:%M:%S %A"
+exec = date +"%Y-%m-%d %H:%M %A"
+format-prefix = "   "
+format = <label>
+interval = 1
+click-left = zenity --calendar &
+click-right = feh --bg-fill --randomize ~/Pictures/Wallpapers/*
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = 
+; label-open-foreground = ${colors.secondary}
+label-close =  cancel
+; label-close-foreground = ${colors.secondary}
+label-separator = |
+; label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[module/system-bluetooth-bluetoothctl]
+type = custom/script
+exec = ~/.config/polybar/system-bluetooth-bluetoothctl.sh
+tail = true
+click-right= ~/.config/polybar/system-bluetooth-bluetoothctl.sh --toggle &
+click-left=blueman-manager 
+
+[module/updates-pacman-aurhelper]
+type = custom/script
+exec = ~/.config/polybar/updates-pacman-aurhelper.sh
+interval = 600
+
+[module/pulseaudio-control]
+type = custom/script
+tail = true
+; format-underline = ${colors.cyan}
+; label-padding = 2
+label-foreground = ${colors.foreground}
+
+# Icons mixed from Font Awesome 5 and Material Icons
+# You can copy-paste your options for each possible action, which is more
+# trouble-free but repetitive, or apply only the relevant ones (for example
+# --sink-blacklist is only needed for next-sink).
+# 'pactl list sinks short | cut -f2'  to get device namae
+exec = pulseaudio-control --icons-volume " , " --icon-muted " " --sink-nicknames-from "device.description" --sink-nickname "bluez_sink.38_18_4C_24_DE_17.a2dp_sink:    XM3" --sink-nickname "alsa_output.usb-EDIFIER_EDIFIER_S880-00.iec958-stereo:   S880" --sink-nickname "alsa_output.pci-0000_28_00.1.hdmi-stereo: HDMI" --sink-nickname "alsa_output.usb-Sony_MDR-1ADAC-00.analog-stereo: 1ADAC" listen
+
+click-left = exec pavucontrol &
+click-right = pulseaudio-control togmute
+click-middle = pulseaudio-control --sink-blacklist "alsa_output.pci-0000_2a_00.4.iec958-stereo" next-sink
+scroll-up = pulseaudio-control --volume-max 130 up
+scroll-down = pulseaudio-control --volume-max 130 down
+
+[module/music]
+type = custom/script
+exec = ~/.config/polybar/music_control.sh netease-cloud-music print
+interval = 0.3
+click-left = ~/.config/polybar/music_control.sh netease-cloud-music playpause
+click-right = ~/.config/polybar/music_control.sh netease-cloud-music start
+scroll-up = ~/.config/polybar/music_control.sh netease-cloud-music volume_up
+scroll-down = ~/.config/polybar/music_control.sh netease-cloud-music volume_down
+click-middle = ~/.config/polybar/music_control.sh netease-cloud-music set_next
+double-click-left = ~/.config/polybar/music_control.sh netease-cloud-music shuffle
+
+[module/fcitx]
+type = custom/script
+exec = polybar-fcitx-watch
+tail = true
+interval = 0
+; format-prefix = "%{F#f94}  %{F-}"
+format-prefix = "   "
+
+[module/keyboard]
+type = internal/xkeyboard
+blacklist-0 = scroll lock
+label-layout = 
+; label-indicator-on-numlock = "%{F#f94}[Num]%{F-}"
+label-indicator-on-numlock = "Num"
+label-indicator-off-numlock = 
+; label-indicator-on-capslock = "%{F#381801}[Caps]%{F-}"
+label-indicator-on-capslock = "Caps"
+label-indicator-off-capslock = 
+
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+pseudo-transparency = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
