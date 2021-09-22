@@ -36,7 +36,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " coc extensions
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 " CocInstall coc-tabnine coc-snippets coc-lists coc-ecdict coc-calc coc-sh
-" CocInstall coc-rust-analyzer coc-pyright coc-json coc-pairs coc-clangd
+" coc-rust-analyzer coc-pyright coc-json coc-pairs coc-clangd coc-word coc-marketplace
 "
 " C++ Project
 " cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1
@@ -55,7 +55,7 @@ Plug 'morhetz/gruvbox'
 " https://github.com/overcache/NeoSolarized
 " Plug 'overcache/NeoSolarized'
 
-Plug 'hrsh7th/vim-eft'
+Plug 'justinmk/vim-sneak'
 
 " " Initialize plugin system
 call plug#end()
@@ -243,27 +243,6 @@ nnoremap * :keepjumps normal! mi*`i<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin configuration
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" for vim-eft
-" This plugin provides f/t/F/T mappings that can be customized by your setting.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap ; <Plug>(eft-repeat)
-xmap ; <Plug>(eft-repeat)
-
-nmap f <Plug>(eft-f)
-xmap f <Plug>(eft-f)
-omap f <Plug>(eft-f)
-nmap F <Plug>(eft-F)
-xmap F <Plug>(eft-F)
-omap F <Plug>(eft-F)
-
-nmap t <Plug>(eft-t)
-xmap t <Plug>(eft-t)
-omap t <Plug>(eft-t)
-nmap T <Plug>(eft-T)
-xmap T <Plug>(eft-T)
-omap T <Plug>(eft-T)
 
 """"""""""""""""""""""""""""""
 " for coc
