@@ -108,6 +108,7 @@ source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 # export PATH="./:$PATH"
+export PATH="/home/qianlv/.local/bin:$PATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -195,6 +196,11 @@ esac
 # in WSL
 ISWSL=`uname -r | grep microsoft`
 if [ -n "$ISWSL" ]; then
+    # 配置win32yank.exe
+    # curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
+    # unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
+    # chmod +x /tmp/win32yank.exe
+    # sudo mv /tmp/win32yank.exe /usr/local/bin/
     alias pbcopy='win32yank.exe -i --crlf'
     alias pbpaste='win32yank.exe -o --lf'
     alias open='explorer.exe `wslpath -w "$PWD"`'
