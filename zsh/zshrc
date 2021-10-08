@@ -185,7 +185,7 @@ case "$OSTYPE" in
         ;;
     linux*)
         # export PATH=$HOME/.gem/ruby/2.7.0/bin/:$PATH
-        # export PATH=$HOME/.local/bin/:$PATH
+        export PATH=$HOME/.local/bin/:$PATH
         alias open=xdg-open
         alias pbcopy='xsel --clipboard --input'
         alias pbpaste='xsel --clipboard --output'
@@ -221,7 +221,10 @@ compctl -K _pip_completion pip
 # pip zsh completion end
 
 # racket completion
-source /usr/share/racket/pkgs/shell-completion/racket-completion.zsh
+RACKET_COMPLETION_FILE=/usr/share/racket/pkgs/shell-completion/racket-completion.zsh
+if [[ -f "$RACKET_COMPLETION_FILE" ]]; then
+  source "$RACKET_COMPLETION_FILE"
+fi
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
