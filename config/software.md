@@ -25,8 +25,8 @@
      //192.168.7.2/d /home/qianlv/Smbs/D cifs username=qianlv,password=123456,uid=1000,gid=1000,iocharset=utf8 0 0
      
      nfs: 挂载格式
-     192.168.7.154:/MyHome/OutSource /home/qianlv/OutSource nfs auto,nofail,noatime,nolock,intr,tcp,nfsvers=4.1 0 0
-     192.168.7.154:/Qianlv /home/qianlv/MyHome nfs auto,nofail,noatime,nolock,intr,tcp,nfsvers=4.1 0 0
+     192.168.7.154:/MyHome/OutSource /home/qianlv/OutSource nfs auto,nofail,noatime,nolock,_netdev  0 0
+     192.168.7.154:/Qianlv /home/qianlv/MyHome nfs auto,nofail,noatime,nolock,_netdev  0 0
      
      mac smbfs:
      	mount_smbfs -f 0644 -d 0755 '//[user:password]@192.168.7.154/Qianlv' /Users/qianlv/MyHome
@@ -63,12 +63,12 @@
    ```
    安装
       	sudo apt install zsh git
-      	sudo apt install powerline fonts-powerline 
       
    oh-my-zsh
    	wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
    
    修改Shell
+   	
    	chsh -s /bin/zsh
    	
    插件
