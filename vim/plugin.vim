@@ -1,4 +1,3 @@
-filetype off                  " required
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree'
@@ -41,8 +40,13 @@ endif
 
 " " Initialize plugin system
 call plug#end()
-filetype plugin indent on    " required
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ColorScheme
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+colorscheme gruvbox
+" hi NonText ctermbg=none
+" hi Normal guibg=NONE ctermbg=NONE
 
 """"""""""""""""""""""""""""""
 " for coc
@@ -222,7 +226,6 @@ nnoremap <silent><nowait> <leader>cp  :<C-u>CocList files<CR>
 nnoremap <silent><nowait> <leader>rs  :<C-u>CocRestart<CR>
 " Open CocConfig
 nnoremap <silent><nowait> <leader>cf  :<C-u>CocConfig<CR>
-" header/file switch
 
 " enable/disable coc integration
 let g:airline#extensions#coc#enabled = 1
@@ -321,28 +324,21 @@ let g:vista_executive_for = {
 " treesitter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has('nvim')
-    lua <<EOF
-    require'nvim-treesitter.configs'.setup {
-        highlight = {
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+    highlight = {
         enable = true,
         custom_captures = {
             -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
             ["foo.bar"] = "Identifier",
-            },
+        },
         -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
         -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
         -- Using this option may slow down your editor, and you may see some duplicate highlights.
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
-        },
-        indent = { enable = true },
-    }
+    },
+    indent = { enable = false},
+}
 EOF
 endif
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ColorScheme
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme gruvbox
-hi Normal ctermbg=none guibg=none

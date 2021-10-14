@@ -13,7 +13,7 @@
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "
 " neovim 配置目录:  ~/.config/nvim/
-let &packpath = &runtimepath
+" let &packpath = &runtimepath
 
 let s:config_files = [
          \ '~/.vim/option.vim',
