@@ -3,14 +3,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 " Plug 'uarun/vim-protobuf'
-" Plug 'godlygeek/tabular'
 Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-surround'
 Plug 'honza/vim-snippets'
-" Plug 'mbbill/undotree'
 Plug 'kshenoy/vim-signature'
-Plug 'terryma/vim-expand-region'
 Plug 'Yggdroot/indentLine'
 Plug 'frazrepo/vim-rainbow'
 Plug 'liuchengxu/vista.vim'
@@ -32,8 +28,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Themes
 Plug 'morhetz/gruvbox'
-
 Plug 'justinmk/vim-sneak'
+
 if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 endif
@@ -199,7 +195,7 @@ inoremap <silent><nowait> <C-p> <Esc>:SH<CR>i
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
@@ -290,15 +286,11 @@ function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
 
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
 let g:lightline = {
-      \ 'colorscheme': 'powerline',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified'] ]
+      \             [ 'readonly', 'filename', 'cocstatus', 'currentfunction', 'modified'] ]
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status',

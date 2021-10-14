@@ -4,12 +4,12 @@
     // c++, c
     "clangd.enabled": true,
     // "clangd.disableSnippetCompletion": true,
-    "clangd.arguments": ["-fallback-style=WebKit"],
-    // "clangd.fallbackFlags": ["-std=gnu99"],
+    "clangd.arguments": ["-fallback-style=LLVM"],
+    "clangd.fallbackFlags": ["-std=c++11"],
     // "clangd.fallbackFlags": ["-std=c11"],
     // "clangd.fallbackFlags": ["-std=c99"],
     // "clangd.fallbackFlags": ["-std=c90"],
-    "clangd.fallbackFlags": ["-std=c++14"],
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/12.0.1/clangd_12.0.1/bin/clangd",
 
     // json
     // "json.enable": false,
@@ -67,7 +67,6 @@
     "coc.source.around.enable": true,
     "coc.source.buffer.enable": true,
     "coc.preferences.extensionUpdateCheck": "daily",
-    "suggest.enablePreview": true,
-    // "clangd.path": "/Users/qianlv/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd"
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/12.0.1/clangd_12.0.1/bin/clangd"
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+    "suggest.enablePreview": true
 }
