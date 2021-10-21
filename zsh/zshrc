@@ -45,7 +45,7 @@ esac
 # DISABLE_UPDATE_PROMPT="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=2
+export UPDATE_ZSH_DAYS=1
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
@@ -161,7 +161,8 @@ if [[ -f ~/.zplug/init.zsh ]] {
 
     zplug "zsh-users/zsh-syntax-highlighting"
     zplug "zsh-users/zsh-autosuggestions"
-    zplug romkatv/powerlevel10k, as:theme, depth:1
+    zplug "romkatv/powerlevel10k", as:theme, depth:1
+    
 
     if ! zplug check --verbose; then
         echo 'Run "zplug install" to install'
@@ -220,7 +221,6 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 # pip zsh completion start
 function _pip_completion {
