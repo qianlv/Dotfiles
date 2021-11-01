@@ -24,10 +24,11 @@ syntax enable
 set t_Co=256
 set background=dark " or light if you prefer the light version
 if (has("termguicolors"))
+    " fix bug for vim
+    set t_8f=^[[38;2;%lu;%lu;%lum
+    set t_8b=^[[48;2;%lu;%lu;%lum
     set termguicolors
 endif
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 
 " Set to auto read when a file is changed from the outside
