@@ -159,6 +159,8 @@ if has("autocmd")
     " for 'Comments are not permitted in JSON' problem
     au BufRead,BufNewFile *.json set filetype=jsonc
 
+    au BufRead,BufNewFile *.s,*.S set filetype=gas
+
 endif 
 
 " https://www.reddit.com/r/vim/comments/2362q1/let_mapleader_now_how_do_i_get_rid_of_that_delay/

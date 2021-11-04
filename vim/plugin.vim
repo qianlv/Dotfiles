@@ -34,6 +34,7 @@ if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 endif
 
+Plug 'Shirk/vim-gas'
 " " Initialize plugin system
 call plug#end()
 
@@ -42,7 +43,8 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme gruvbox
 " hi NonText ctermbg=none
-" hi Normal guibg=NONE ctermbg=NONE
+" hi Normal guibg=none ctermbg=none
+" hi statusline guibg=none ctermbg=none
 
 """"""""""""""""""""""""""""""
 " for coc
@@ -257,6 +259,7 @@ let g:NERDCompactSexyComs = 1
 let g:NERDDefaultAlign = 'left'
 nmap <silent><nowait> <C-m>   <plug>NERDCommenterToggle
 xmap <silent><nowait> <C-m>   <plug>NERDCommenterToggle
+let g:NERDCustomDelimiters = { 'gas' : {'left': '#'}}
 
 
 """"""""""""""""""""""""""""""
