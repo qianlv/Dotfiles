@@ -15,7 +15,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " coc extensions
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 " CocInstall coc-tabnine coc-snippets coc-lists coc-ecdict coc-calc coc-sh
-" coc-rust-analyzer coc-pyright coc-json coc-pairs coc-clangd coc-word coc-marketplace
+" coc-rust-analyzer coc-pyright coc-json coc-pairs coc-clangd coc-word coc-marketplace coc-terminal
 "
 " C++ Project
 " cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1
@@ -42,9 +42,12 @@ call plug#end()
 " ColorScheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme gruvbox
-" hi NonText ctermbg=none
-" hi Normal guibg=none ctermbg=none
-" hi statusline guibg=none ctermbg=none
+hi NonText ctermbg=none guifg=bg
+hi Normal guibg=none ctermbg=none
+hi clear CursorLineNR
+hi LineNr guifg=bg
+hi SignColumn guibg=none ctermbg=none
+
 
 """"""""""""""""""""""""""""""
 " for coc
@@ -66,14 +69,7 @@ set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+set signcolumn=auto
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -300,6 +296,10 @@ let g:lightline = {
       \   'currentfunction': 'CocCurrentFunction',
       \ },
       \ }
+let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+let s:palette.inactive.middle = s:palette.normal.middle
+let s:palette.tabline.middle = s:palette.normal.middle
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vista
