@@ -4,7 +4,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 " Plug 'uarun/vim-protobuf'
 Plug 'itchyny/lightline.vim'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'honza/vim-snippets'
 Plug 'chentau/marks.nvim'
 Plug 'Yggdroot/indentLine'
@@ -35,7 +34,7 @@ if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 endif
 
-Plug 'Shirk/vim-gas'
+Plug 'Shirk/vim-gas'    " GNU assembly syntax highlight
 " " Initialize plugin system
 call plug#end()
 
