@@ -1,15 +1,16 @@
 {
     // https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
  
+    "coc.source.word.priority": 10,
     // c++, c
     "clangd.enabled": true,
     // "clangd.disableSnippetCompletion": true,
-    "clangd.arguments": ["-fallback-style=LLVM"],
+    "clangd.arguments": ["-fallback-style=Webkit"],
     "clangd.fallbackFlags": ["-std=c++11"],
-    // "clangd.fallbackFlags": ["-std=c11"],
+    // "clangd.fallbackFlags": ["-std=gnu99"],
     // "clangd.fallbackFlags": ["-std=c99"],
     // "clangd.fallbackFlags": ["-std=c90"],
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/12.0.1/clangd_12.0.1/bin/clangd",
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
 
     // json
     // "json.enable": false,
@@ -50,6 +51,8 @@
             ]
         }
     },
+    // coc-pairs
+    "pairs.disableLanguages": ["scheme"],
 
 
     // tabnine

@@ -42,11 +42,16 @@ call plug#end()
 " ColorScheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme gruvbox
-hi NonText ctermbg=none guifg=bg
-hi Normal guibg=none ctermbg=none
+hi NonText ctermbg=NONE guifg=bg
+hi EndOfBuffer ctermfg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
 hi clear CursorLineNR
-hi LineNr guifg=bg
-hi SignColumn guibg=none ctermbg=none
+if has('nvim')
+    hi LineNr guifg=bg
+else
+    hi LineNr guifg=#ebdbb2 
+endif
+hi SignColumn guibg=NONE ctermbg=NONE
 
 
 """"""""""""""""""""""""""""""
