@@ -16,7 +16,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 " CocInstall coc-tabnine coc-snippets coc-lists coc-ecdict coc-calc coc-sh
 " coc-rust-analyzer coc-pyright coc-json coc-pairs coc-clangd coc-word
-" coc-marketplace coc-yank
+" coc-marketplace 
 "
 " C++ Project
 " cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1
@@ -115,7 +115,7 @@ nmap <silent> gs :sp<CR><Plug>(coc-definition)
 nmap <silent> gv :vsp<CR><Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -204,7 +204,7 @@ inoremap <silent><nowait> <C-p> <Esc>:SH<CR>i
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <leader>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <leader>a  :<C-u>CocList --normal diagnostics<cr>
 " Manage extensions.
 nnoremap <silent><nowait> <leader>e  :<C-u>CocList extensions<cr>
 " Show commands.
@@ -222,7 +222,7 @@ nnoremap <silent><nowait> <leader>ls  :<C-u>CocList buffers<cr>
 " Resume latest coc list.
 nnoremap <silent><nowait> <leader>re  :<C-u>CocListResume<CR>
 " Search files
-nnoremap <silent><nowait> <leader>p  :<C-u>CocList files<CR>
+nnoremap <silent><nowait> <leader>p  :<C-u>CocList -A files<CR>
 " Restar Coc
 nnoremap <silent><nowait> <leader>rs  :<C-u>CocRestart<CR>
 " Open CocConfig
@@ -235,8 +235,6 @@ let g:airline#extensions#coc#enabled = 1
 " grep word under cursor
 command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
 
-" coc-yank
-nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 function! s:GrepArgs(...)
   let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
@@ -245,14 +243,14 @@ function! s:GrepArgs(...)
 endfunction
 
 " Keymapping for grep word under cursor with interactive mode
-nnoremap <silent> <Leader>gr :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
+nnoremap <silent> <Leader>rw :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
 
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-" let g:coc_snippet_next = '<c-j>'
-let g:coc_snippet_next = '<Tab>'
+let g:coc_snippet_next = '<c-j>'
+" let g:coc_snippet_next = '<Tab>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-" let g:coc_snippet_prev = '<c-k>'
+let g:coc_snippet_prev = '<c-k>'
 
 
 """"""""""""""""""""""""""""""
@@ -328,6 +326,7 @@ let g:vista_executive_for = {
 
 " load lua config
 if has('nvim')
+
 lua <<EOF
 
 local map = vim.api.nvim_set_keymap
