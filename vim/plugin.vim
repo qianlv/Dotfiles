@@ -16,7 +16,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 " CocInstall coc-tabnine coc-snippets coc-lists coc-ecdict coc-calc coc-sh
 " coc-rust-analyzer coc-pyright coc-json coc-pairs coc-clangd coc-word
-" coc-marketplace coc-yank
+" coc-marketplace
 "
 " C++ Project
 " cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1
@@ -304,10 +304,10 @@ let g:lightline = {
       \ },
       \ }
 
-let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
-let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
-let s:palette.inactive.middle = s:palette.normal.middle
-let s:palette.tabline.middle = s:palette.normal.middle
+" let s:palette = g:lightline#colorscheme#{g:lightline.colorscheme}#palette
+" let s:palette.normal.middle = [ [ 'NONE', 'NONE', 'NONE', 'NONE' ] ]
+" let s:palette.inactive.middle = s:palette.normal.middle
+" let s:palette.tabline.middle = s:palette.normal.middle
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vista
