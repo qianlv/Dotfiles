@@ -61,6 +61,7 @@
     // https://github.com/neoclide/coc.nvim/blob/release/doc/coc.txt
     "suggest.labelMaxLength": 50,
     "suggest.minTriggerInputLength": 3,
+    "suggest.enablePreview": true,
     // "coc.preferences.hoverTarget": "float",
     // "coc.preferences.previewAutoClose": false
     // auto format
@@ -69,7 +70,6 @@
     // 由于 coc-tabnine 使用，coc自带的buffer补全和arround补全可以禁用了
     "coc.source.around.enable": true,
     "coc.source.buffer.enable": true,
-    "coc.preferences.extensionUpdateCheck": "daily",
-    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-    "suggest.enablePreview": true
+    "coc.preferences.extensionUpdateCheck": "never",
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true
 }
