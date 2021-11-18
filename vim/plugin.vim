@@ -115,7 +115,7 @@ nmap <silent> gs :sp<CR><Plug>(coc-definition)
 nmap <silent> gv :vsp<CR><Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -204,7 +204,7 @@ inoremap <silent><nowait> <C-p> <Esc>:SH<CR>i
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <leader>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <leader>a  :<C-u>CocList --normal diagnostics<cr>
 " Manage extensions.
 nnoremap <silent><nowait> <leader>e  :<C-u>CocList extensions<cr>
 " Show commands.
@@ -222,7 +222,7 @@ nnoremap <silent><nowait> <leader>ls  :<C-u>CocList buffers<cr>
 " Resume latest coc list.
 nnoremap <silent><nowait> <leader>re  :<C-u>CocListResume<CR>
 " Search files
-nnoremap <silent><nowait> <leader>p  :<C-u>CocList files<CR>
+nnoremap <silent><nowait> <leader>p  :<C-u>CocList -A files<CR>
 " Restar Coc
 nnoremap <silent><nowait> <leader>rs  :<C-u>CocRestart<CR>
 " Open CocConfig
