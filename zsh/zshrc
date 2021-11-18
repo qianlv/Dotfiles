@@ -133,7 +133,7 @@ export LANG=en_US.UTF-8
 alias vim='nvim'
 alias rvim='/usr/bin/vim'
 alias cmake='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
-alias make='bear make'
+alias make='bear -- make'
 
 # User configuration
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
@@ -239,9 +239,37 @@ RACKET_COMPLETION_FILE=/usr/share/racket/pkgs/shell-completion/racket-completion
 if [[ -f "$RACKET_COMPLETION_FILE" ]]; then
   source "$RACKET_COMPLETION_FILE"
 fi
-# nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+
+# for command-not-found in arch
+# https://wiki.archlinux.org/title/zsh#pacman_-F_%22command_not_found%22_handler
+if [[ -f /usr/bin/pacman ]]; then
+function command_not_found_handler {
+    local purple='\e[1;35m' bright='\e[0;1m' green='\e[1;32m' reset='\e[0m'
+    printf 'zsh: command not found: %s\n' "$1"
+    local entries=(
+        ${(f)"$(/usr/bin/pacman -F --machinereadable -- "/usr/bin/$1")"}
+    )
+    if (( ${#entries[@]} ))
+    then
+        printf "${bright}$1${reset} may be found in the following packages:\n"
+        local pkg
+        for entry in "${entries[@]}"
+        do
+            # (repo package version file)
+            local fields=(
+                ${(0)entry}
+            )
+            if [[ "$pkg" != "${fields[2]}" ]]
+            then
+                printf "${purple}%s/${bright}%s ${green}%s${reset}\n" "${fields[1]}" "${fields[2]}" "${fields[3]}"
+            fi
+
+            printf '    /%s\n' "${fields[4]}"
+            pkg="${fields[2]}"
+        done
+    fi
+}
+fi
 
 # core dump location
 # ulimit -c unlimited
