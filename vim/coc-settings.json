@@ -14,7 +14,7 @@
 
     // json
     // "json.enable": false,
-    // "json.trace.server": "messages",
+    "json.trace.server": "messages",
     "json.format.enable": true,
 
     // python
@@ -61,7 +61,6 @@
     // https://github.com/neoclide/coc.nvim/blob/release/doc/coc.txt
     "suggest.labelMaxLength": 50,
     "suggest.minTriggerInputLength": 3,
-    "suggest.enablePreview": true,
     // "coc.preferences.hoverTarget": "float",
     // "coc.preferences.previewAutoClose": false
     // auto format
@@ -71,5 +70,6 @@
     "coc.source.around.enable": true,
     "coc.source.buffer.enable": true,
     "coc.preferences.extensionUpdateCheck": "daily",
-    "coc.preferences.currentFunctionSymbolAutoUpdate": true
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+    "suggest.enablePreview": true
 }
