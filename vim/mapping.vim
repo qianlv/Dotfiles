@@ -20,13 +20,11 @@ set pastetoggle=<F2>
 " terminal size
 if has('nvim')
   set guicursor=
-  " nnoremap <silent><nowait> <space>t :<C-u>sp \| resize 7 \| term<CR>i
-  nmap <silent><nowait> <space>t <Plug>(coc-terminal-toggle)
+  nnoremap <silent><nowait> <space>t :<C-u>sp \| resize 7 \| term<CR>i
   nnoremap <silent><nowait> <space>tt :tabnew +term<CR>i
 else
   " set ttyfast                " Faster redrawing.
-  " nnoremap <silent><nowait> <space>t :<C-u> sp \| resize 7 \| term ++curwin<CR>
-  nnoremap <silent><nowait> <space>t <Plug>(coc-terminal-toggle)
+  nnoremap <silent><nowait> <space>t :<C-u> sp \| resize 7 \| term ++curwin<CR>
   nnoremap <silent><nowait> <space>tt :<C-u>tabnew \| term ++curwin<CR>
 endif
 

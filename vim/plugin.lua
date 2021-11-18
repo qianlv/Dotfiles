@@ -30,8 +30,8 @@ require'marks'.setup {
     cyclic = true,
     -- whether the shada file is updated after modifying uppercase marks. default false
     force_write_shada = false,
-    -- how often (in ms) to redraw signs/recompute mark positions. 
-    -- higher values will have better performance but may cause visual lag, 
+    -- how often (in ms) to redraw signs/recompute mark positions.
+    -- higher values will have better performance but may cause visual lag,
     -- while lower values may cause performance penalties. default 150.
     refresh_interval = 250,
     -- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
@@ -49,6 +49,21 @@ require'marks'.setup {
     bookmark_0 = {
         sign = "⚑",
         virt_text = "hello world"
-        },
+    },
     mappings = {}
-    }
+}
+
+require'FTerm'.setup({
+    border = 'double',
+    dimensions  = {
+        height = 0.9,
+        width = 0.9,
+    },
+})
+
+-- Example keybindings
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+map('n', '<A-i>', '<CMD>lua require("FTerm").toggle()<CR>', opts)
+map('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)

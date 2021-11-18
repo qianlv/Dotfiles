@@ -16,7 +16,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 " CocInstall coc-tabnine coc-snippets coc-lists coc-ecdict coc-calc coc-sh
 " coc-rust-analyzer coc-pyright coc-json coc-pairs coc-clangd coc-word
-" coc-marketplace coc-terminal
+" coc-marketplace coc-yank
 "
 " C++ Project
 " cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1
@@ -38,6 +38,7 @@ endif
 Plug 'Shirk/vim-gas'    " GNU assembly syntax highlight
 " " Initialize plugin system
 call plug#end()
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ColorScheme
@@ -221,7 +222,7 @@ nnoremap <silent><nowait> <leader>ls  :<C-u>CocList buffers<cr>
 " Resume latest coc list.
 nnoremap <silent><nowait> <leader>re  :<C-u>CocListResume<CR>
 " Search files
-nnoremap <silent><nowait> <leader>cp  :<C-u>CocList files<CR>
+nnoremap <silent><nowait> <leader>p  :<C-u>CocList files<CR>
 " Restar Coc
 nnoremap <silent><nowait> <leader>rs  :<C-u>CocRestart<CR>
 " Open CocConfig
@@ -233,6 +234,9 @@ let g:airline#extensions#coc#enabled = 1
 " install ripgrep
 " grep word under cursor
 command! -nargs=+ -complete=custom,s:GrepArgs Rg exe 'CocList grep '.<q-args>
+
+" coc-yank
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 function! s:GrepArgs(...)
   let list = ['-S', '-smartcase', '-i', '-ignorecase', '-w', '-word',
@@ -406,5 +410,6 @@ vim.api.nvim_exec(
 
 map('n', '<A-i>', '<CMD>lua require("FTerm").toggle()<CR>', opts)
 map('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
+
 EOF
 endif
