@@ -98,6 +98,7 @@ plugins=(
     python
     rust
     rustup
+    cargo
     pip
     brew
 )
@@ -269,6 +270,10 @@ function command_not_found_handler {
         done
     fi
 }
+fi
+
+if [[ -d "$HOME/.cargo/" ]]; then
+    source "$HOME/.cargo/env"
 fi
 
 # core dump location
