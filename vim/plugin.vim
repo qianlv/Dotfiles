@@ -35,7 +35,7 @@ if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 endif
 
-Plug 'Shirk/vim-gas'    " GNU assembly syntax highlight
+Plug 'Shirk/vim-gas', {'for': 'gas'}    " GNU assembly syntax highlight
 " " Initialize plugin system
 call plug#end()
 
@@ -76,7 +76,7 @@ set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
-set signcolumn=auto
+set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
