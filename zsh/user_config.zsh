@@ -1,5 +1,28 @@
 # User configuration
-#
+
+# plugins=(
+#     git
+#     command-not-found
+#     extract
+#     autojump
+#     cp
+#     colored-man-pages
+#     safe-paste # 复制脚本后不会立即运行
+#     autopep8
+#     python
+#     rust
+#     rustup
+#     cargo
+#     pip
+#     tmux
+# )
+
+source <(antibody init)
+
+antibody bundle zsh-users/zsh-syntax-highlighting
+antibody bundle zsh-users/zsh-history-substring-search
+antibody bundle zsh-users/zsh-completions
+
 for file (
     # racket completion
     /usr/share/racket/pkgs/shell-completion/racket-completion.zsh
@@ -72,3 +95,8 @@ if [ -n "$ISWSL" ]; then
     export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
     export LIBGL_ALWAYS_INDIRECT=1
 fi
+
+# core dump location
+# ulimit -c unlimited
+# echo '/tmp/core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern
+
