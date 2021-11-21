@@ -1,109 +1,34 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-# p10k configure to reset
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# curl -L git.io/antigen > antigen.zsh
 
-# Path to your oh-my-zsh installation.
-case "$OSTYPE" in
-    linux*)
-        export ZSH="/home/qianlv/.oh-my-zsh"
-        ;;
-    darwin*)
-        export ZSH="/Users/qianlv/.oh-my-zsh/"
-        ;;
-esac
+source ~/antigen.zsh
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Load oh-my-zsh library
+antigen use oh-my-zsh
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="robbyrussell"
+# Load bundles from the default repo (oh-my-zsh)
+antigen bundle git
+antigen bundle command-not-found
+antigen bundle extract
+antigen bundle autojump
+antigen bundle cp
+antigen bundle colored-man-pages
+antigen bundle safe-paste # 复制脚本后不会立即运行
+antigen bundle autopep8
+antigen bundle python
+antigen bundle rust
+antigen bundle rustup
+antigen bundle cargo
+antigen bundle tmux
+antigen bundle pip
+antigen bundle command-not-found
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-completions
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+antigen theme robbyrussell
 
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-export UPDATE_ZSH_DAYS=1
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-    git
-    extract
-    autojump
-    cp
-    command-not-found
-    colored-man-pages
-    safe-paste # 复制脚本后不会立即运行
-    docker
-    docker-compose
-    autopep8
-    python
-    rust
-    rustup
-    cargo
-    tmux
-    pip
-    brew
-)
-
-source $ZSH/oh-my-zsh.sh
+antigen apply
 
 # User configuration
 
@@ -137,44 +62,12 @@ alias cmake='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 alias make='bear -- make'
 
 # User configuration
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
 if [[ $TMUX != "" ]] then
     export TERM="tmux-256color"
 else
     export TERM="xterm-256color"
 fi
-
-### Fix slowness of pastes with zsh-syntax-highlighting.zsh
-### from https://gist.github.com/magicdude4eva/2d4748f8ef3e6bf7b1591964c201c1ab
-### or https://github.com/zsh-users/zsh-autosuggestions/issues/238#issuecomment-389324292
-pasteinit() {
-  OLD_SELF_INSERT=${${(s.:.)widgets[self-insert]}[2,3]}
-  zle -N self-insert url-quote-magic # I wonder if you'd need `.url-quote-magic`?
-}
-
-pastefinish() {
-  zle -N self-insert $OLD_SELF_INSERT
-}
-zstyle :bracketed-paste-magic paste-init pasteinit
-zstyle :bracketed-paste-magic paste-finish pastefinish
-
-# zplug plugin
-# install zplug
-# curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-if [[ -f ~/.zplug/init.zsh ]] {
-    source ~/.zplug/init.zsh
-
-    zplug "zsh-users/zsh-syntax-highlighting"
-    zplug "zsh-users/zsh-autosuggestions"
-    zplug "romkatv/powerlevel10k", as:theme, depth:1
-    
-
-    if ! zplug check --verbose; then
-        echo 'Run "zplug install" to install'
-    fi
-    # Then, source plugins and add commands to $PATH
-    zplug load
-}
 
 # https://gist.github.com/ntamvl/6597b6e28a50a592519a1e2c89fa4386
 case "$OSTYPE" in
@@ -224,31 +117,10 @@ if [ -n "$ISWSL" ]; then
     export LIBGL_ALWAYS_INDIRECT=1
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# pip zsh completion start
-function _pip_completion {
-  local words cword
-  read -Ac words
-  read -cn cword
-  reply=( $( COMP_WORDS="$words[*]" \
-             COMP_CWORD=$(( cword-1 )) \
-             PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null ))
-}
-compctl -K _pip_completion pip
-# pip zsh completion end
-
 # racket completion
 RACKET_COMPLETION_FILE=/usr/share/racket/pkgs/shell-completion/racket-completion.zsh
 if [[ -f "$RACKET_COMPLETION_FILE" ]]; then
   source "$RACKET_COMPLETION_FILE"
-fi
-
-# 参考: .oh-my-zsh/plugins/command-not-found/README.md
-# https://wiki.archlinux.org/title/Pkgfile#Command_not_found)
-if [[ -f /usr/share/doc/pkgfile/command-not-found.zsh ]]; then
-    source /usr/share/doc/pkgfile/command-not-found.zsh
 fi
 
 if [[ -d "$HOME/.cargo/" ]]; then
