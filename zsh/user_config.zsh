@@ -17,6 +17,10 @@
 #     tmux
 # )
 
+# curl -sfL git.io/antibody | sh -s - -b /usr/local/bin
+# or
+# yay -S antibody
+# or brew install antibody
 source <(antibody init)
 
 antibody bundle zsh-users/zsh-syntax-highlighting
