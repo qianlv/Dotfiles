@@ -1,30 +1,47 @@
-# User configuration
-
-# plugins=(
-#     git
-#     command-not-found
-#     extract
-#     autojump
-#     cp
-#     colored-man-pages
-#     safe-paste # 复制脚本后不会立即运行
-#     autopep8
-#     python
-#     rust
-#     rustup
-#     cargo
-#     pip
-#     tmux
-# )
-
+# Install
+#
+# 1. oh-my-zsh
+# sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+#
+# 2. antibody
 # curl -sfL git.io/antibody | sh -s - -b /usr/local/bin
 # or
 # yay -S antibody
 # or brew install antibody
+
+
+# User configuration
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+    git
+    command-not-found
+    extract
+    autojump
+    cp
+    colored-man-pages
+    safe-paste # 复制脚本后不会立即运行
+    autopep8
+    python
+    rust
+    rustup
+    cargo
+    pip
+    tmux
+    fzf
+    ripgrep
+)
+
+source $ZSH/oh-my-zsh.sh
 source <(antibody init)
 
+antibody bundle romkatv/powerlevel10k
 antibody bundle zsh-users/zsh-syntax-highlighting
-antibody bundle zsh-users/zsh-history-substring-search
+antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle zsh-users/zsh-completions
 
 for file (
@@ -37,6 +54,14 @@ for file (
   fi
 done
 unset file
+
+typeset -A cmds
+cmds=(npm "completion")
+for cmd arg in "${(@kv)cmds}"; do
+  if [[ -x "$(command -v ${cmd})" ]]; then
+      source <($cmd $arg)
+  fi
+done
 
 export LANG=en_US.UTF-8
 
@@ -103,4 +128,3 @@ fi
 # core dump location
 # ulimit -c unlimited
 # echo '/tmp/core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern
-
