@@ -70,6 +70,10 @@ alias vim='nvim'
 alias rvim='/usr/bin/vim'
 alias cmake='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
 alias make='bear -- make'
+alias gcc='bear -- gcc'
+alias g++='bear -- g++'
+alias clang='bear -- clang'
+alias clang++='bear -- clang++'
 
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
 if [[ $TMUX != "" ]] then
@@ -85,10 +89,19 @@ case "$OSTYPE" in
         alias ls='LSCOLORS=gxfxcxdxbxexexabagacad /bin/ls -bHGLOPW'
         
         # for mac 
-        export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
+        # export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
         export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
         export PATH=/usr/local/opt/llvm/bin:$PATH
+        export PATH=/usr/local/opt/gcc/bin:$PATH
         alias awk=gawk
+        alias ubuntu='multipass shell'
+        # if type brew &>/dev/null
+        # then
+        #   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+        #   autoload -Uz compinit
+        #   compinit
+        # fi
         ;;
     linux*)
         # export PATH=$HOME/.gem/ruby/2.7.0/bin/:$PATH
