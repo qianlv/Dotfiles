@@ -11,17 +11,20 @@ set nocompatible
 set infercase
 set linebreak
 " 将tab键和多余的空格显示出来
-" set listchars=trail:.
+set listchars=tab:»·,trail:·
+set list
+set wildmenu
+set wildmode=longest:list,full
 " Sets how many lines of history VIM has to remember
-set history=1000
+set history=100
 "Enable filetype plugin
 filetype plugin on
 filetype indent on
 " switch syntax highlighting on
-syntax on
+" syntax on
 syntax enable
+
 " set color
-set t_Co=256
 set background=dark " or light if you prefer the light version
 if (has("termguicolors"))
     " fix bug for vim
