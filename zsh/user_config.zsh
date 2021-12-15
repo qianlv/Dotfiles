@@ -123,15 +123,8 @@ if [ -n "$ISWSL" ]; then
     alias pbcopy='win32yank.exe -i --crlf'
     alias pbpaste='win32yank.exe -o --lf'
 
-    # use files.exe or explorer.exe to open the specific path
-    function open_wsl() {
-        if [[ `which files.exe &>/dev/null && echo $?` == "0" ]]; then
-            files.exe `wslpath -w "$1"` &
-        else
-            explorer.exe `wslpath -w "$1"` 
-        fi
-    }
-    alias open='open_wsl'
+    # https://github.com/cpbotha/xdg-open-wsl
+    alias open='xdg-open'
     # X11 configure
     # https://stackoverflow.com/questions/61110603/how-to-set-up-working-x11-forwarding-on-wsl2
     export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
