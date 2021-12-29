@@ -28,8 +28,6 @@ plugins=(
     autopep8
     python
     rust
-    rustup
-    cargo
     pip
     tmux
     fzf
