@@ -32,6 +32,7 @@ plugins=(
     tmux
     fzf
     ripgrep
+    web-search
 )
 
 source $ZSH/oh-my-zsh.sh
