@@ -67,12 +67,12 @@ export LANG=en_US.UTF-8
 # alias
 alias vim='nvim'
 alias rvim='/usr/bin/vim'
-alias cmake='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
-alias make='bear -- make'
-alias gcc='bear -- gcc'
-alias g++='bear -- g++'
-alias clang='bear -- clang'
-alias clang++='bear -- clang++'
+alias bcmake='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
+alias bmake='bear -- make'
+alias bgcc='bear -- gcc'
+alias bg++='bear -- g++'
+alias bclang='bear -- clang'
+alias bclang++='bear -- clang++'
 
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
 if [[ $TMUX != "" ]] then
