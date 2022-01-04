@@ -61,6 +61,7 @@ for cmd arg in "${(@kv)cmds}"; do
   fi
 done
 
+# https://github.com/sharkdp/vivid
 if [[ -x "$(command -v vivid)" ]]; then
     export LS_COLORS="$(vivid generate ayu)"
 fi
@@ -85,6 +86,8 @@ else
     export TERM="xterm-256color"
 fi
 
+export PATH=$HOME/.local/bin/:$PATH
+
 # https://gist.github.com/ntamvl/6597b6e28a50a592519a1e2c89fa4386
 case "$OSTYPE" in
     darwin*)
@@ -98,29 +101,26 @@ case "$OSTYPE" in
         alias ubuntu='multipass shell'
         ;;
     linux*)
-        export PATH=$HOME/.local/bin/:$PATH
-        alias open=xdg-open
-        alias pbcopy='xsel --clipboard --input'
-        alias pbpaste='xsel --clipboard --output'
+        if [[ "$(uname -r)" == *icrosoft* ]];
+        then
+            # 配置win32yank.exe
+            # curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
+            # unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
+            # chmod +x /tmp/win32yank.exe
+            # sudo mv /tmp/win32yank.exe /usr/local/bin/
+            alias pbcopy='win32yank.exe -i --crlf'
+            alias pbpaste='win32yank.exe -o --lf'
+
+            # X11 configure
+            # https://stackoverflow.com/questions/61110603/how-to-set-up-working-x11-forwarding-on-wsl2
+            export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
+            export LIBGL_ALWAYS_INDIRECT=1
+        else
+            alias pbcopy='xsel --clipboard --input'
+            alias pbpaste='xsel --clipboard --output'
+        fi
         ;;
 esac
-
-# in WSL
-ISWSL=`uname -r | grep microsoft`
-if [ -n "$ISWSL" ]; then
-    # 配置win32yank.exe
-    # curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
-    # unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
-    # chmod +x /tmp/win32yank.exe
-    # sudo mv /tmp/win32yank.exe /usr/local/bin/
-    alias pbcopy='win32yank.exe -i --crlf'
-    alias pbpaste='win32yank.exe -o --lf'
-
-    # X11 configure
-    # https://stackoverflow.com/questions/61110603/how-to-set-up-working-x11-forwarding-on-wsl2
-    export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
-    export LIBGL_ALWAYS_INDIRECT=1
-fi
 
 # core dump location
 # ulimit -c unlimited
