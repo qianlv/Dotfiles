@@ -9,7 +9,6 @@
 # yay -S antibody
 # or brew install antibody
 
-
 # User configuration
 
 # Which plugins would you like to load?
@@ -62,6 +61,10 @@ for cmd arg in "${(@kv)cmds}"; do
   fi
 done
 
+if [[ -x "$(command -v vivid)" ]]; then
+    export LS_COLORS="$(vivid generate ayu)"
+fi
+
 export LANG=en_US.UTF-8
 
 # alias
@@ -73,6 +76,7 @@ alias bgcc='bear -- gcc'
 alias bg++='bear -- g++'
 alias bclang='bear -- clang'
 alias bclang++='bear -- clang++'
+alias open='open_command'
 
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
 if [[ $TMUX != "" ]] then
@@ -84,26 +88,16 @@ fi
 # https://gist.github.com/ntamvl/6597b6e28a50a592519a1e2c89fa4386
 case "$OSTYPE" in
     darwin*)
-        unalias ls
-        alias ls='LSCOLORS=gxfxcxdxbxexexabagacad /bin/ls -bHGLOPW'
-        
-        # for mac 
-        # export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
-        export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
+        # unalias ls
+        # alias ls='LSCOLORS=gxfxcxdxbxexexabagacad /bin/ls -bHGLOPW'
+
+        # for mac
         export PATH=/usr/local/opt/llvm/bin:$PATH
         export PATH=/usr/local/opt/gcc/bin:$PATH
         alias awk=gawk
         alias ubuntu='multipass shell'
-        # if type brew &>/dev/null
-        # then
-        #   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-
-        #   autoload -Uz compinit
-        #   compinit
-        # fi
         ;;
     linux*)
-        # export PATH=$HOME/.gem/ruby/2.7.0/bin/:$PATH
         export PATH=$HOME/.local/bin/:$PATH
         alias open=xdg-open
         alias pbcopy='xsel --clipboard --input'
@@ -122,8 +116,6 @@ if [ -n "$ISWSL" ]; then
     alias pbcopy='win32yank.exe -i --crlf'
     alias pbpaste='win32yank.exe -o --lf'
 
-    # https://github.com/cpbotha/xdg-open-wsl
-    alias open='xdg-open'
     # X11 configure
     # https://stackoverflow.com/questions/61110603/how-to-set-up-working-x11-forwarding-on-wsl2
     export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
