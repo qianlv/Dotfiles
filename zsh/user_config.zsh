@@ -88,7 +88,6 @@ fi
 
 export PATH=$HOME/.local/bin/:$PATH
 
-# https://gist.github.com/ntamvl/6597b6e28a50a592519a1e2c89fa4386
 case "$OSTYPE" in
     darwin*)
         # unalias ls
@@ -98,6 +97,7 @@ case "$OSTYPE" in
         export PATH=/usr/local/opt/llvm/bin:$PATH
         export PATH=/usr/local/opt/gcc/bin:$PATH
         alias awk=gawk
+        alias ls="gls --color"
         alias ubuntu='multipass shell'
         ;;
     linux*)
