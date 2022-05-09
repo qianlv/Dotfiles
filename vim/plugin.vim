@@ -16,7 +16,7 @@ Plug 'numToStr/FTerm.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " coc extensions
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
-" CocInstall coc-tabnine coc-snippets coc-lists coc-ecdict coc-calc coc-sh
+" CocInstall coc-snippets coc-lists coc-ecdict coc-calc coc-sh
 " coc-rust-analyzer coc-pyright coc-json coc-pairs coc-clangd coc-word
 " coc-marketplace
 "
@@ -354,6 +354,7 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- folder config
+vim.opt.foldlevel = 1
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
