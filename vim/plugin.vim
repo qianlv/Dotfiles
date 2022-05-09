@@ -35,6 +35,8 @@ Plug 'justinmk/vim-sneak'
 
 if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+
+    Plug 'github/copilot.vim'
 endif
 
 Plug 'Shirk/vim-gas', {'for': 'gas'}    " GNU assembly syntax highlight
@@ -262,8 +264,8 @@ let g:NERDSpaceDelims=1
 let g:NERDCompactSexyComs = 1
 " Align line-wise comment delimiters flush left instead of following code IndentationError
 let g:NERDDefaultAlign = 'left'
-nmap <silent><nowait> <C-m>   <plug>NERDCommenterToggle
-xmap <silent><nowait> <C-m>   <plug>NERDCommenterToggle
+nmap <silent><nowait> <Enter>   <plug>NERDCommenterToggle
+xmap <silent><nowait> <Enter>   <plug>NERDCommenterToggle
 let g:NERDCustomDelimiters = { 'gas' : {'left': '#'}}
 
 
@@ -348,9 +350,12 @@ require'nvim-treesitter.configs'.setup {
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
     },
-    indent = { enable = false },
+    indent = { enable = false},
 }
 
+-- folder config
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 ------------------------------------------------------
 -- Plug 'chentau/marks.nvim'
