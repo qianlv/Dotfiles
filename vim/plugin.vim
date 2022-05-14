@@ -226,7 +226,7 @@ nnoremap <silent><nowait> <leader>ls  :<C-u>CocList buffers<cr>
 " Resume latest coc list.
 nnoremap <silent><nowait> <leader>re  :<C-u>CocListResume<CR>
 " Search files
-nnoremap <silent><nowait> <leader>p  :<C-u>CocList -A files<CR>
+nnoremap <silent><nowait> <leader>p  :<C-u>CocList files<CR>
 " Restar Coc
 nnoremap <silent><nowait> <leader>rs  :<C-u>CocRestart<CR>
 " Open CocConfig
@@ -300,7 +300,7 @@ let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'cocstatus', 'currentfunction', 'modified'] ]
+      \             [ 'readonly', 'absolutepath', 'cocstatus', 'currentfunction', 'modified'] ]
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status',
