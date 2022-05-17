@@ -32,7 +32,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Themes
 " Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
-Plug 'tribela/vim-transparent'
+Plug 'xiyaowong/nvim-transparent'
 Plug 'justinmk/vim-sneak'
 
 if has('nvim')
@@ -66,16 +66,11 @@ let g:gruvbox_material_background = 'soft'
 let g:gruvbox_material_better_performance = 1
 colorscheme gruvbox-material
 
-" hi NonText ctermbg=NONE guifg=bg
-" hi EndOfBuffer ctermfg=NONE ctermbg=NONE
-" hi Normal guibg=NONE ctermbg=NONE
-" hi clear CursorLineNR
-" if has('nvim')
-"     hi LineNr guifg=bg
-" else
-"     hi LineNr guifg=#ebdbb2 
-" endif
-" hi SignColumn guibg=NONE ctermbg=NONE
+if has('nvim')
+    hi LineNr guifg=bg
+else
+    hi LineNr guifg=#ebdbb2
+endif
 
 
 """"""""""""""""""""""""""""""
@@ -425,9 +420,29 @@ require'FTerm'.setup({
     },
 })
 
+require("transparent").setup({
+  enable = true, -- boolean: enable transparent
+  extra_groups = { -- table/string: additional groups that should be cleared
+    -- In particular, when you set it to 'all', that means all available groups
+    "FloatBorder", -- for floating windows
+
+    -- example of akinsho/nvim-bufferline.lua
+    "BufferLineTabClose",
+    "BufferlineBufferSelected",
+    "BufferLineFill",
+    "BufferLineBackground",
+    "BufferLineSeparator",
+    "BufferLineIndicatorSelected",
+  },
+  exclude = {
+    "LineNr",
+  }, -- table: groups you don't want to clear
+})
+
+
+-- vim config
 vim.api.nvim_exec(
 [[
-    hi FloatBorder guibg=bg
 ]], false)
 
 
