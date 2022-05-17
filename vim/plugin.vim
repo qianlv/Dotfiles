@@ -7,7 +7,7 @@ Plug 'scrooloose/nerdcommenter'
 " Plug 'uarun/vim-protobuf'
 Plug 'itchyny/lightline.vim'
 Plug 'honza/vim-snippets'
-Plug 'chentau/marks.nvim'
+Plug 'chentoast/marks.nvim'
 Plug 'Yggdroot/indentLine'
 Plug 'frazrepo/vim-rainbow'
 Plug 'liuchengxu/vista.vim'
@@ -30,7 +30,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " bear, https://github.com/rizsotto/Bear
 
 " Themes
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'sainnhe/gruvbox-material'
 Plug 'justinmk/vim-sneak'
 
 if has('nvim')
@@ -47,7 +48,23 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ColorScheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme gruvbox
+" Important!!
+if has('termguicolors')
+  set termguicolors
+endif
+" For dark version.
+set background=dark
+" 'material', 'mix', 'original' or a custom palette
+" default is 'material'
+let g:gruvbox_material_palette = 'mix'
+" Set contrast.
+" This configuration option should be placed before `colorscheme gruvbox-material`.
+" Available values: 'hard', 'medium'(default), 'soft'
+let g:gruvbox_material_background = 'hard'
+" For better performance
+let g:gruvbox_material_better_performance = 1
+colorscheme gruvbox-material
+
 hi NonText ctermbg=NONE guifg=bg
 hi EndOfBuffer ctermfg=NONE ctermbg=NONE
 hi Normal guibg=NONE ctermbg=NONE
@@ -297,7 +314,7 @@ function! CocCurrentFunction()
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme' : 'gruvbox_material',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'absolutepath', 'cocstatus', 'currentfunction', 'modified'] ]
