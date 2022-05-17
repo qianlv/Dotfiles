@@ -32,6 +32,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Themes
 " Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
+Plug 'tribela/vim-transparent'
 Plug 'justinmk/vim-sneak'
 
 if has('nvim')
@@ -60,21 +61,21 @@ let g:gruvbox_material_palette = 'mix'
 " Set contrast.
 " This configuration option should be placed before `colorscheme gruvbox-material`.
 " Available values: 'hard', 'medium'(default), 'soft'
-let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_background = 'soft'
 " For better performance
 let g:gruvbox_material_better_performance = 1
 colorscheme gruvbox-material
 
-hi NonText ctermbg=NONE guifg=bg
-hi EndOfBuffer ctermfg=NONE ctermbg=NONE
-hi Normal guibg=NONE ctermbg=NONE
-hi clear CursorLineNR
-if has('nvim')
-    hi LineNr guifg=bg
-else
-    hi LineNr guifg=#ebdbb2 
-endif
-hi SignColumn guibg=NONE ctermbg=NONE
+" hi NonText ctermbg=NONE guifg=bg
+" hi EndOfBuffer ctermfg=NONE ctermbg=NONE
+" hi Normal guibg=NONE ctermbg=NONE
+" hi clear CursorLineNR
+" if has('nvim')
+"     hi LineNr guifg=bg
+" else
+"     hi LineNr guifg=#ebdbb2 
+" endif
+" hi SignColumn guibg=NONE ctermbg=NONE
 
 
 """"""""""""""""""""""""""""""
