@@ -67,7 +67,8 @@ let g:gruvbox_material_better_performance = 1
 colorscheme gruvbox-material
 
 if has('nvim')
-    hi LineNr guifg=bg
+    hi LineNr guifg=bg guibg=bg
+    hi CursorLineNr guifg=fg guibg=bg
 else
     hi LineNr guifg=#ebdbb2
 endif
@@ -436,6 +437,7 @@ require("transparent").setup({
   },
   exclude = {
     "LineNr",
+    "CursorLineNr",
   }, -- table: groups you don't want to clear
 })
 
