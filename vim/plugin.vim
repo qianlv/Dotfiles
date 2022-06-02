@@ -66,14 +66,6 @@ let g:gruvbox_material_background = 'soft'
 let g:gruvbox_material_better_performance = 1
 colorscheme gruvbox-material
 
-if has('nvim')
-    hi LineNr guifg=bg guibg=bg
-    hi CursorLineNr guifg=fg guibg=bg
-else
-    hi LineNr guifg=#ebdbb2
-endif
-
-
 """"""""""""""""""""""""""""""
 " for coc
 """"""""""""""""""""""""""""""
@@ -347,6 +339,9 @@ lua <<EOF
 
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
+map('n', '<A-i>', '<CMD>lua require("FTerm").toggle()<CR>', opts)
+map('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
+
 
 ------------------------------------------------------
 -- treesitter
@@ -368,7 +363,7 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- folder config
-vim.opt.foldlevel = 1
+vim.opt.foldlevel = 2
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
@@ -447,9 +442,6 @@ vim.api.nvim_exec(
 [[
 ]], false)
 
-
-map('n', '<A-i>', '<CMD>lua require("FTerm").toggle()<CR>', opts)
-map('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
 
 EOF
 endif
