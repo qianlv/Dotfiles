@@ -14,6 +14,10 @@
 "
 " neovim 配置目录:  ~/.config/nvim/
 " let &packpath = &runtimepath
+"
+" For Server config
+" https://github.com/wklken/vim-for-server
+"
 
 let s:config_files = [
          \ '~/.vim/option.vim',

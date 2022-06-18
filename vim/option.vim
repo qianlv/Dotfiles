@@ -97,9 +97,6 @@ let mapleader="\<Space>"
 """"""""""""""""""""""""""""""
 " Indent
 """"""""""""""""""""""""""""""
-" set shiftwidth=2
-" set tabstop=2
-" set softtabstop=2
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
@@ -152,8 +149,6 @@ if has("autocmd")
 
 	"自动回到上次打开的位置
 	autocmd! BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
-
-    au BufReadPost *.rkt,*.rktl set filetype=scheme
 
     " indentLine 
     autocmd FileType json,markdown let g:indentLine_conceallevel = 0

@@ -31,3 +31,14 @@ endif
 " * 搜索不调整到下一个
 nnoremap * *``
 nnoremap * :keepjumps normal! mi*`i<CR>
+
+" Reselect visual block after indent/outdent.调整缩进后自动选中，方便再次操作
+vnoremap < <gv
+vnoremap > >gv
+
+" Keep search pattern at the center of the screen."
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
