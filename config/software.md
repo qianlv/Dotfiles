@@ -71,37 +71,13 @@
    	
    	chsh -s /bin/zsh
    	
-   插件
-   plugins=(
-       git extract autojump zsh-autosuggestions zsh-syntax-highlighting
-   )
-   
    sudo apt install autojump
    j dir 跳转
    
-   提示背景色修改
-   在 .oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-   或 .zshrc
-   中修改 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
-   参考: https://www.zhihu.com/question/265489573
-   # zplug 插件管理
-   # zplug plugin
-   # install zplug
-   # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-   if [[ -f ~/.zplug/init.zsh ]] {
-       source ~/.zplug/init.zsh
-   
-       zplug "zsh-users/zsh-syntax-highlighting"
-       zplug "zsh-users/zsh-autosuggestions"
-    zplug romkatv/powerlevel10k, as:theme, depth:1
-       
-       if ! zplug check --verbose; then
-           echo 'Run "zplug install" to install'
-       fi
-       # Then, source plugins and add commands to $PATH
-       zplug load
-   }
-   
+
+    # User configuration
+    source $HOME/.user_config.zsh 
+
    ```
    
 2. alias
@@ -111,13 +87,6 @@
    alias my_proxy="export ALL_PROXY=socks5://192.168.2.106:1087"
    ```
 
-
-### Vim
-
-   ```
-YouCompleteMe .ycm_extra_conf.py 头文件路径查看
-echo | gcc -v -E -x c++ -
-   ```
 
 ### 软件
 
