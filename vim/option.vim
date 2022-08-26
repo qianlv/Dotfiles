@@ -7,14 +7,6 @@
 
 " Get out of VI's compatible mode..
 set nocompatible
-" 区分大小写
-set infercase
-set linebreak
-" 将tab键和多余的空格显示出来
-set listchars=tab:»·,trail:·
-set list
-set wildmenu
-set wildmode=longest:list,full
 " Sets how many lines of history VIM has to remember
 set history=100
 "Enable filetype plugin
@@ -45,11 +37,17 @@ set autowrite
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Interface & Display
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 区分大小写
+set infercase
+set linebreak
+" 将tab键和多余的空格显示出来
+set listchars=tab:»·,trail:·
+set list
+
+set wildmenu
+set wildmode=longest:list,full
 " set scroll offset
 set scrolloff=5
-" Turn on wild menu
-set wildmenu
-set wildmode=longest:full
 " Show the line and column number of the cursor position, separated by a comma
 set ruler
 " change buffer without saving
@@ -97,6 +95,9 @@ let mapleader="\<Space>"
 """"""""""""""""""""""""""""""
 " Indent
 """"""""""""""""""""""""""""""
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4

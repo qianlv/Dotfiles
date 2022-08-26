@@ -1,28 +1,27 @@
 {
     // https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
- 
     "coc.source.word.priority": 10,
     // c++, c
     "clangd.enabled": true,
     // "clangd.disableSnippetCompletion": true,
-    "clangd.arguments": ["-fallback-style=Webkit"],
-    "clangd.fallbackFlags": ["-std=c++11"],
-    // "clangd.fallbackFlags": ["-std=gnu99"],
+    "clangd.arguments": [
+        "-fallback-style=Webkit"
+    ],
+    // "clangd.fallbackFlags": ["-std=c++11"],
+    "clangd.fallbackFlags": [
+        "-std=gnu99"
+    ],
     // "clangd.fallbackFlags": ["-std=c99"],
     // "clangd.fallbackFlags": ["-std=c90"],
     "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
-
     // json
     // "json.enable": false,
-    "json.trace.server": "messages",
-    "json.format.enable": true,
-
+    // "json.trace.server": "messages",
+    // "json.format.enable": true,
     // python
     "python.pythonPath": "python3",
-
     // rust
     // "rust-analyzer.hoverActions.linksInHover": true,
-
     // coc-lists
     "list.normalMappings": {
         "t": "action:tabe",
@@ -34,7 +33,6 @@
         "<C-t>": "action:tabe",
         "<C-w>": "command:wincmd k"
     },
-
     // sh
     "sh.enable": true,
     // racket
@@ -52,24 +50,50 @@
         }
     },
     // coc-pairs
-    "pairs.disableLanguages": ["scheme"],
-
-
-    // tabnine
-
-    // coc
+    "pairs.disableLanguages": [
+        "scheme"
+    ],
     // https://github.com/neoclide/coc.nvim/blob/release/doc/coc.txt
     "suggest.labelMaxLength": 50,
     "suggest.minTriggerInputLength": 3,
-    "suggest.enablePreview": true,
+    "suggest.noselect": false,
     // "coc.preferences.hoverTarget": "float",
     // "coc.preferences.previewAutoClose": false
     // auto format
     // "coc.preferences.formatOnSaveFiletypes": ["rust", "python", "cpp"],
-    "coc.preferences.formatOnSaveFiletypes": ["rust", "python"],
+    // "coc.preferences.formatOnSaveFiletypes": ["rust", "python", "cpp"],
     // 由于 coc-tabnine 使用，coc自带的buffer补全和arround补全可以禁用了
     "coc.source.around.enable": true,
     "coc.source.buffer.enable": true,
-    "coc.preferences.extensionUpdateCheck": "never",
-    "coc.preferences.currentFunctionSymbolAutoUpdate": true
+    "coc.preferences.extensionUpdateCheck": "daily",
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+    // coc-diagnosis
+    "diagnostic-languageserver.filetypes": {
+        // lint `sh` (includes `bash`) files
+        "sh": "shellcheck"
+    },
+    "diagnostic-languageserver.formatFiletypes": {
+        // format `sh` (includes `bash`) files using formatter defined below
+        "sh": "shfmt",
+        "python": ["black", "isort"]
+    },
+
+    "diagnostic-languageserver.formatters": {
+        // define our formatter so that we can reference it from
+        // `diagnostic-languageserver.formatFiletypes`
+        "shfmt": {
+            "command": "shfmt",
+            // all the below args are entirely optional
+            // primarily listed here to call out that flags which take an
+            // argument (such as `-i <num-spaces>` for specifying indentation)
+            // should be split into two strings, the flag and then the value
+            "args": [
+                "-i",
+                "2",
+                "-bn",
+                "-ci",
+                "-sr"
+            ]
+        }
+    }
 }
