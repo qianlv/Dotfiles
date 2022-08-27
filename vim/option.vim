@@ -16,16 +16,6 @@ filetype indent on
 " syntax on
 syntax enable
 
-" set color
-set background=dark " or light if you prefer the light version
-if (has("termguicolors"))
-    " fix bug for vim
-    " set t_8f=[38;2;%lu;%lu;%lum
-    " set t_8b=[48;2;%lu;%lu;%lum
-    set termguicolors
-endif
-
-
 " Set to auto read when a file is changed from the outside
 set autoread
 " save when changing buffer
@@ -107,8 +97,10 @@ set smarttab    "set smarttab, at the start of line use shiftwide and others tab
 set autoindent
 " Smart indent
 set smartindent
-" show a visual line under the cursor's current line 
-" set cursorline
+" show a visual line under the cursor's current line and highlight the line
+" number
+set cursorline
+set cursorlineopt=number
 
 " set clipboard^=unnamed
 " https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl

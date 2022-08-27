@@ -419,7 +419,7 @@ require("transparent").setup({
   },
   exclude = {
     "LineNr",
-    "CursorLineNr",
+    -- "CursorLineNr",
   }, -- table: groups you don't want to clear
 })
 
