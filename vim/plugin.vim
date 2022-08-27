@@ -30,8 +30,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " bear, https://github.com/rizsotto/Bear
 
 " Themes
-" Plug 'morhetz/gruvbox'
-Plug 'sainnhe/gruvbox-material'
+Plug 'morhetz/gruvbox'
 Plug 'xiyaowong/nvim-transparent'
 Plug 'justinmk/vim-sneak'
 
@@ -55,16 +54,7 @@ if has('termguicolors')
 endif
 " For dark version.
 set background=dark
-" 'material', 'mix', 'original' or a custom palette
-" default is 'material'
-let g:gruvbox_material_palette = 'mix'
-" Set contrast.
-" This configuration option should be placed before `colorscheme gruvbox-material`.
-" Available values: 'hard', 'medium'(default), 'soft'
-let g:gruvbox_material_background = 'soft'
-" For better performance
-let g:gruvbox_material_better_performance = 1
-colorscheme gruvbox-material
+colorscheme gruvbox
 
 """"""""""""""""""""""""""""""
 " for coc
@@ -300,7 +290,7 @@ function! CocCurrentFunction()
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme' : 'gruvbox_material',
+      \ 'colorscheme' : 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'absolutepath', 'cocstatus', 'currentfunction', 'modified'] ]
