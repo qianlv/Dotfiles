@@ -42,3 +42,6 @@ nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 nnoremap <silent> g* g*zz
+
+" confirm selection in the command line mode for wildmenu
+cnoremap <expr> <space>  wildmenumode()?"\<space>\<BS>":"\<space>"

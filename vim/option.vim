@@ -35,7 +35,9 @@ set listchars=tab:»·,trail:·
 set list
 
 set wildmenu
-set wildmode=longest:list,full
+set wildmode=longest:full,full
+" 自动补全的触发键, default=<Tab>
+set wildchar=<C-n>
 " set scroll offset
 set scrolloff=5
 " Show the line and column number of the cursor position, separated by a comma
