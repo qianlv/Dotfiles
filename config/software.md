@@ -152,10 +152,6 @@ killall Dock
 # GNU 命令软件包
 brew install coreutils
 brew install gawk gnu-sed
-# zshrc
-export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
-export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:$PATH
-alias awk=gawk
 
 # 禁止.DS_store生成
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
@@ -313,3 +309,22 @@ scoop config proxy 192.168.7.1:1081
 
 1. [修改默认浏览器](https://www.rockyourcode.com/change-the-default-browser-in-i3-manjaro-linux/)
 2. [一份别人的i3配置](https://zjuyk.gitlab.io/posts/i3wm-config/)
+<<<<<<< HEAD
+=======
+
+### Clash
+
+```
+# https://github.com/Fndroid/clash_for_windows_pkg/issues/1709
+parsers: # array
+  - url: ...
+    yaml:
+      prepend-rules:
+        - DST-PORT,22,DIRECT
+  - url: ...
+    yaml:
+      prepend-rules:
+        - DST-PORT,22,DIRECT
+```
+
+>>>>>>> add clash config
