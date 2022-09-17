@@ -18,7 +18,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 " CocInstall coc-snippets coc-lists coc-ecdict coc-calc coc-sh
 " coc-rust-analyzer coc-pyright coc-json coc-pairs coc-clangd coc-word
-" coc-marketplace
+" coc-marketplace coc-html
 "
 " C++ Project
 " cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1
@@ -30,7 +30,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " bear, https://github.com/rizsotto/Bear
 
 " Themes
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'ellisonleao/gruvbox.nvim'
 Plug 'xiyaowong/nvim-transparent'
 Plug 'justinmk/vim-sneak'
 
@@ -52,9 +53,6 @@ call plug#end()
 if has('termguicolors')
   set termguicolors
 endif
-" For dark version.
-set background=dark
-colorscheme gruvbox
 
 """"""""""""""""""""""""""""""
 " for coc
@@ -255,6 +253,7 @@ let g:coc_snippet_next = '<Tab>'
 " 注释的时候自动加个空格, 强迫症必配
 let g:NERDSpaceDelims=1
 let g:NERDCompactSexyComs = 1
+let g:NERDAltDelims_python = 1
 " Align line-wise comment delimiters flush left instead of following code IndentationError
 let g:NERDDefaultAlign = 'left'
 nmap <silent><nowait> <Enter>   <plug>NERDCommenterToggle
@@ -423,12 +422,27 @@ require("transparent").setup({
   }, -- table: groups you don't want to clear
 })
 
+-- setup must be called before loading the colorscheme
+-- Default options:
+require("gruvbox").setup({
+  undercurl = true,
+  underline = true,
+  bold = true,
+  italic = true,
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "hard", -- can be "hard", "soft" or empty string
+  overrides = {},
+  dim_inactive = false,
+  transparent_mode = true,
+})
 
--- vim config
-vim.api.nvim_exec(
-[[
-]], false)
-
+vim.cmd([[set background=dark]])
+vim.cmd([[colorscheme gruvbox]])
 
 EOF
 endif
