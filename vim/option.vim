@@ -37,7 +37,7 @@ set list
 set wildmenu
 set wildmode=longest:full,full
 " 自动补全的触发键, default=<Tab>
-set wildchar=<C-n>
+" set wildchar=<C-n>
 " set scroll offset
 set scrolloff=5
 " Show the line and column number of the cursor position, separated by a comma
@@ -90,9 +90,9 @@ let mapleader="\<Space>"
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+" set shiftwidth=4
+" set tabstop=4
+" set softtabstop=4
 set expandtab   "Use the appropriate number of spaces to insert a <Tab>.
 set smarttab    "set smarttab, at the start of line use shiftwide and others tabstop
 " Auto indent
