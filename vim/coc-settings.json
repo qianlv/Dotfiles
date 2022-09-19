@@ -5,11 +5,12 @@
     "clangd.enabled": true,
     // "clangd.disableSnippetCompletion": true,
     "clangd.arguments": [
+        "--header-insertion=never",
         "-fallback-style=Webkit"
     ],
-    // "clangd.fallbackFlags": ["-std=c++11"],
     "clangd.fallbackFlags": [
         "-std=gnu99"
+        // "-std=c++11"
     ],
     // "clangd.fallbackFlags": ["-std=c99"],
     // "clangd.fallbackFlags": ["-std=c90"],
