@@ -24,9 +24,10 @@
      这里uid和gid 可以通过id -u 或 id -g 获取
      //192.168.7.2/d /home/qianlv/Smbs/D cifs username=qianlv,password=123456,uid=1000,gid=1000,iocharset=utf8 0 0
      
+     # https://linuxopsys.com/topics/linux-nfs-mount-entry-in-fstab-with-example
      nfs: 挂载格式
      192.168.7.154:/MyHome/OutSource /home/qianlv/OutSource nfs auto,nofail,noatime,nolock,_netdev  0 0
-     192.168.7.154:/Qianlv /home/qianlv/MyHome nfs auto,nofail,noatime,nolock,_netdev  0 0
+     192.168.7.154:/Qianlv /home/qianlv/MyHome nfs soft,intr,nosuid,timeo=3,retrans=3,tcp  0 0
      
      mac smbfs:
      	mount_smbfs -f 0644 -d 0755 '//[user:password]@192.168.7.154/Qianlv' /Users/qianlv/MyHome
@@ -74,10 +75,10 @@
    sudo apt install autojump
    j dir 跳转
    
-
+   
     # User configuration
     source $HOME/.user_config.zsh 
-
+   
    ```
    
 2. alias
