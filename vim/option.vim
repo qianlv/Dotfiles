@@ -22,7 +22,7 @@ set autoread
 set autowrite
 
 " forbiden mouse
-" set mouse=
+set mouse=
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Interface & Display
