@@ -14,13 +14,16 @@
     ],
     // "clangd.fallbackFlags": ["-std=c99"],
     // "clangd.fallbackFlags": ["-std=c90"],
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd",
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.3/clangd_15.0.3/bin/clangd",
     // json
     // "json.enable": false,
     // "json.trace.server": "messages",
     // "json.format.enable": true,
     // python
-    "python.pythonPath": "python3",
+    "pyright.enable": true,
+    "python.pythonPath": "/usr/bin/python3",
+    "python.sortImports.path": "isort",
+    "pyright.organizeimports.provider":"isort",
     // rust
     // "rust-analyzer.hoverActions.linksInHover": true,
     // coc-lists
@@ -61,24 +64,24 @@
     // "coc.preferences.hoverTarget": "float",
     // "coc.preferences.previewAutoClose": false
     // auto format
-    // "coc.preferences.formatOnSaveFiletypes": ["rust", "python", "cpp"],
-    // "coc.preferences.formatOnSaveFiletypes": ["rust", "python", "cpp"],
-    // 由于 coc-tabnine 使用，coc自带的buffer补全和arround补全可以禁用了
+    "[python][cpp][c]": {
+        "coc.preferences.formatOnSave": true
+    },
+
     "coc.source.around.enable": true,
     "coc.source.buffer.enable": true,
     "coc.preferences.extensionUpdateCheck": "daily",
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-    // coc-diagnosis
+    // coc-diagnostic
     "diagnostic-languageserver.filetypes": {
         // lint `sh` (includes `bash`) files
         "sh": "shellcheck"
     },
     "diagnostic-languageserver.formatFiletypes": {
         // format `sh` (includes `bash`) files using formatter defined below
-        "sh": "shfmt",
-        "python": ["black", "isort"]
+        "sh": "shfmt"
+        // "python": ["autopep8", "black", "isort"]
     },
-
     "diagnostic-languageserver.formatters": {
         // define our formatter so that we can reference it from
         // `diagnostic-languageserver.formatFiletypes`
