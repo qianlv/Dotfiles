@@ -29,7 +29,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Themes
 " Plug 'morhetz/gruvbox'
-Plug 'ellisonleao/gruvbox.nvim'
+" Plug 'ellisonleao/gruvbox.nvim'
+Plug 'sainnhe/gruvbox-material'
+Plug 'sainnhe/everforest'
+Plug 'sainnhe/sonokai'
+Plug 'projekt0n/github-nvim-theme'
 Plug 'xiyaowong/nvim-transparent'
 Plug 'justinmk/vim-sneak'
 
@@ -51,6 +55,28 @@ call plug#end()
 if has('termguicolors')
   set termguicolors
 endif
+
+" For dark version.
+set background=dark
+
+" Set contrast.
+" This configuration option should be placed before `colorscheme gruvbox-material`.
+" Available values: 'hard', 'medium'(default), 'soft'
+" let g:gruvbox_material_background = 'soft'
+" let g:gruvbox_material_better_performance = 1
+" colorscheme gruvbox-material
+
+" Available values: 'hard', 'medium'(default), 'soft'
+" let g:everforest_background = 'hard'
+" let g:everforest_better_performance = 1
+" colorscheme everforest
+
+" The configuration options should be placed before `colorscheme sonokai`.
+let g:sonokai_style = 'default'
+let g:sonokai_better_performance = 1
+colorscheme sonokai
+
+
 
 """"""""""""""""""""""""""""""
 " for coc
@@ -287,7 +313,7 @@ function! CocCurrentFunction()
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme' : 'gruvbox',
+      \ 'colorscheme' : 'sonokai',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'absolutepath', 'cocstatus', 'currentfunction', 'modified'] ]
@@ -331,19 +357,49 @@ map('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
 -- treesitter
 ------------------------------------------------------
 require'nvim-treesitter.configs'.setup {
-    highlight = {
-        enable = true,
-        custom_captures = {
-            -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-            ["foo.bar"] = "Identifier",
-        },
-        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-        -- Using this option may slow down your editor, and you may see some duplicate highlights.
-        -- Instead of true it can also be a list of languages
-        additional_vim_regex_highlighting = false,
-    },
-    indent = { enable = false},
+  -- A list of parser names, or "all"
+  ensure_installed = { "c", "cpp", "vim", "lua", "rust", "python" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- Automatically install missing parsers when entering buffer
+  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+  auto_install = true,
+
+  -- List of parsers to ignore installing (for "all")
+  ignore_install = { },
+
+  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+  -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+    -- the name of the parser)
+    -- list of language that will be disabled
+    disable = {"c", "cpp"},
+    -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
+    -- disable = function(lang, buf)
+    --     local max_filesize = 100 * 1024 -- 100 KB
+    --     local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+    --     if ok and stats and stats.size > max_filesize then
+    --         return true
+    --     end
+    -- end,
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+  indent = {
+    enable = true
+  },
 }
 
 -- folder config
@@ -384,28 +440,6 @@ require("transparent").setup({
     -- "CursorLineNr",
   }, -- table: groups you don't want to clear
 })
-
--- setup must be called before loading the colorscheme
--- Default options:
-require("gruvbox").setup({
-  undercurl = true,
-  underline = true,
-  bold = true,
-  italic = true,
-  strikethrough = true,
-  invert_selection = false,
-  invert_signs = false,
-  invert_tabline = false,
-  invert_intend_guides = false,
-  inverse = true, -- invert background for search, diffs, statuslines and errors
-  contrast = "hard", -- can be "hard", "soft" or empty string
-  overrides = {},
-  dim_inactive = false,
-  transparent_mode = false,
-})
-
-vim.cmd([[set background=dark]])
-vim.cmd([[colorscheme gruvbox]])
 
 EOF
 endif

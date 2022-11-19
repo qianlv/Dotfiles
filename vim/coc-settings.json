@@ -3,7 +3,6 @@
     "coc.source.word.priority": 10,
     // c++, c
     "clangd.enabled": true,
-    // "clangd.disableSnippetCompletion": true,
     "clangd.arguments": [
         "--header-insertion=never",
         "-fallback-style=Webkit"
@@ -15,6 +14,9 @@
     // "clangd.fallbackFlags": ["-std=c99"],
     // "clangd.fallbackFlags": ["-std=c90"],
     "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.3/clangd_15.0.3/bin/clangd",
+    // "semanticTokens.enable": true,
+    // "semanticTokens.filetypes": ["c"],
+
     // json
     // "json.enable": false,
     // "json.trace.server": "messages",
@@ -37,6 +39,9 @@
         "<C-t>": "action:tabe",
         "<C-w>": "command:wincmd k"
     },
+    // coc-word
+    // "coc.source.word.enable": false,
+
     // sh
     "sh.enable": true,
     // racket
@@ -71,13 +76,15 @@
         "coc.preferences.formatOnSave": true
     },
     "[c][cpp]": {
-        "coc.preferences.formatOnSave": true
+        "coc.preferences.formatOnSave": false,
+        "semanticTokens.enable": true
     },
     "coc.source.around.enable": true,
     "coc.source.buffer.enable": true,
     "coc.preferences.extensionUpdateCheck": "daily",
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     // coc-diagnostic
+    "diagnostic-languageserver.enable": false,
     // "diagnostic.enable": false,
     "diagnostic-languageserver.filetypes": {
         // lint `sh` (includes `bash`) files
@@ -86,7 +93,6 @@
     "diagnostic-languageserver.formatFiletypes": {
         // format `sh` (includes `bash`) files using formatter defined below
         "sh": "shfmt"
-        // "python": ["autopep8", "black", "isort"]
     },
     "diagnostic-languageserver.formatters": {
         // define our formatter so that we can reference it from
