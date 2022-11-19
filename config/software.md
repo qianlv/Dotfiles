@@ -310,8 +310,6 @@ scoop config proxy 192.168.7.1:1081
 
 1. [修改默认浏览器](https://www.rockyourcode.com/change-the-default-browser-in-i3-manjaro-linux/)
 2. [一份别人的i3配置](https://zjuyk.gitlab.io/posts/i3wm-config/)
-<<<<<<< HEAD
-=======
 
 ### Clash
 
@@ -327,5 +325,3 @@ parsers: # array
       prepend-rules:
         - DST-PORT,22,DIRECT
 ```
-
->>>>>>> add clash config
