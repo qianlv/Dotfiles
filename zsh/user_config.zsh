@@ -17,7 +17,7 @@
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
+    # git
     command-not-found
     extract
     autojump
@@ -32,6 +32,7 @@ plugins=(
     fzf
     ripgrep
     web-search
+    sudo
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -126,4 +127,7 @@ esac
 
 # core dump location
 # ulimit -c unlimited
-# echo '/tmp/core_%e.%p' | sudo tee /proc/sys/kernel/core_pattern
+# Arch:
+# echo '/tmp/core_%e_%p' | sudo tee /proc/sys/kernel/core_pattern
+# Ubuntu:
+# sudo sysctl -w kernel.core_pattern=/tmp/core_%e_%p
