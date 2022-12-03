@@ -90,9 +90,9 @@ let mapleader="\<Space>"
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
-" set shiftwidth=4
-" set tabstop=4
-" set softtabstop=4
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
 set expandtab   "Use the appropriate number of spaces to insert a <Tab>.
 set smarttab    "set smarttab, at the start of line use shiftwide and others tabstop
 " Auto indent
@@ -106,25 +106,8 @@ set cursorlineopt=number
 
 " set clipboard^=unnamed
 " https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
+" scoop install win32yank for wsl2
 set clipboard+=unnamedplus
-
-if system('uname -r') =~ "microsoft"
-if has('nvim')
-    let s:win32yank = '/usr/local/bin/win32yank.exe'
-    let g:clipboard = {
-          \  'name' : 'wsl',
-          \  'copy' : {
-          \    '+' : s:win32yank..' -i --crlf',
-          \    '*' : s:win32yank..' -i --crlf',
-          \  },
-          \  'paste' : {
-          \    '+' : s:win32yank..' -o --lf',
-          \    '*' : s:win32yank..' -o --lf',
-          \  },
-          \}
-    unlet s:win32yank
-endif
-endif
 
 """"""""""""""""""""""""""""""
 " Encoding
@@ -139,11 +122,11 @@ set termencoding=utf-8
 " AutoCmd
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
-	"auto read vimrc when it refreshed
+    "auto read vimrc when it refreshed
     autocmd! bufwritepost ~/.vim/vimrc source ~/.vim/vimrc
 
-	"自动回到上次打开的位置
-	autocmd! BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+    "自动回到上次打开的位置
+    autocmd! BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 
     " indentLine 
     autocmd FileType json,markdown let g:indentLine_conceallevel = 0
