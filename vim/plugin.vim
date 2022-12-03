@@ -62,9 +62,16 @@ set background=dark
 " Set contrast.
 " This configuration option should be placed before `colorscheme gruvbox-material`.
 " Available values: 'hard', 'medium'(default), 'soft'
-" let g:gruvbox_material_background = 'soft'
-" let g:gruvbox_material_better_performance = 1
-" colorscheme gruvbox-material
+let g:gruvbox_material_foreground = 'mix'
+let g:gruvbox_material_background = 'medium'
+let g:gruvbox_material_better_performance = 1
+let g:gruvbox_material_ui_contrast = 1
+let g:gruvbox_material_enable_bold = 1
+let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_diagnostic_text_highlight = 1
+let g:gruvbox_material_diagnostic_line_highlight = 1
+let g:gruvbox_material_diagnostic_virtual_text = 'colored'
+colorscheme gruvbox-material
 
 " Available values: 'hard', 'medium'(default), 'soft'
 " let g:everforest_background = 'hard'
@@ -72,10 +79,13 @@ set background=dark
 " colorscheme everforest
 
 " The configuration options should be placed before `colorscheme sonokai`.
-let g:sonokai_style = 'default'
-let g:sonokai_better_performance = 1
-colorscheme sonokai
-
+" let g:sonokai_style = 'espresso'
+" let g:sonokai_better_performance = 1
+" let g:sonokai_enable_italic = 1
+" let g:sonokai_diagnostic_text_highlight = 1
+" let g:sonokai_diagnostic_line_highlight = 1
+" let g:sonokai_diagnostic_virtual_text = 'colored'
+" colorscheme sonokai
 
 
 """"""""""""""""""""""""""""""
@@ -312,11 +322,12 @@ function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
 
+" let g:lightline = {'colorscheme' : 'sonokai'}
+let g:lightline = {'colorscheme' : 'gruvbox_material'}
 let g:lightline = {
-      \ 'colorscheme' : 'sonokai',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'absolutepath', 'cocstatus', 'currentfunction', 'modified'] ]
+      \             [ 'readonly', 'relativepath', 'cocstatus', 'currentfunction', 'modified'] ]
       \ },
       \ 'component_function': {
       \   'cocstatus': 'coc#status',
@@ -356,7 +367,7 @@ map('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
 ------------------------------------------------------
 -- treesitter
 ------------------------------------------------------
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
   -- A list of parser names, or "all"
   ensure_installed = { "c", "cpp", "vim", "lua", "rust", "python" },
 
@@ -398,7 +409,7 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
   indent = {
-    enable = true
+    enable = false
   },
 }
 
@@ -407,7 +418,11 @@ vim.opt.foldlevel = 2
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
-require'FTerm'.setup({
+require("FTerm").setup({
+    ---Filetype of the terminal buffer
+    ---@type string
+    ft = 'FTerm',
+
     border = 'rounded',
 
     -- Highlight group for the terminal. See `:h winhl`
