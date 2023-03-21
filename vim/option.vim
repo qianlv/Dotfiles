@@ -90,6 +90,9 @@ let mapleader="\<Space>"
 set shiftwidth=2
 set tabstop=2
 set softtabstop=2
+" set shiftwidth=3
+" set tabstop=3
+" set softtabstop=3
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
@@ -102,7 +105,7 @@ set smartindent
 " show a visual line under the cursor's current line and highlight the line
 " number
 set cursorline
-set cursorlineopt=number
+" set cursorlineopt+=number
 
 " set clipboard^=unnamed
 " https://github.com/neovim/neovim/wiki/FAQ#how-to-use-the-windows-clipboard-from-wsl
@@ -118,12 +121,31 @@ set fileencoding=utf-8
 set fileencodings=utf-8,cp936,latin1
 set termencoding=utf-8
 
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+
+" Give more space for displaying messages.
+set cmdheight=1
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+set signcolumn=yes
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AutoCmd
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("autocmd")
     "auto read vimrc when it refreshed
-    autocmd! bufwritepost ~/.vim/vimrc source ~/.vim/vimrc
+    " autocmd! bufwritepost ~/.vim/vimrc source ~/.vim/vimrc
 
     "自动回到上次打开的位置
     autocmd! BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
@@ -136,6 +158,8 @@ if has("autocmd")
     au BufRead,BufNewFile *.json set filetype=jsonc
 
     au BufRead,BufNewFile *.s,*.S set filetype=gas
+
+    " autocmd FileType list set winhighlight=CursorLine:CocUnderline
 
 endif 
 

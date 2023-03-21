@@ -10,6 +10,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'frazrepo/vim-rainbow'
 Plug 'liuchengxu/vista.vim'
 Plug 'numToStr/FTerm.nvim'
+Plug 'justinmk/vim-sneak'
 " Plug 'liuchengxu/vim-which-key'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " coc extensions
@@ -35,12 +36,13 @@ Plug 'sainnhe/everforest'
 Plug 'sainnhe/sonokai'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'xiyaowong/nvim-transparent'
-Plug 'justinmk/vim-sneak'
 
 if has('nvim')
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
-    " Plug 'github/copilot.vim'
+    Plug 'github/copilot.vim'
+
+    let g:copilot_filetypes = {'markdown': v:true}
 endif
 
 Plug 'Shirk/vim-gas', {'for': 'gas'}    " GNU assembly syntax highlight
@@ -91,25 +93,6 @@ colorscheme gruvbox-material
 """"""""""""""""""""""""""""""
 " for coc
 """"""""""""""""""""""""""""""
-" TextEdit might fail if hidden is not set.
-set hidden
-
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
-
-" Give more space for displaying messages.
-set cmdheight=1
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-set signcolumn=yes
-
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
@@ -177,6 +160,7 @@ augroup mygroup
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+
 augroup end
 
 " Applying codeAction to the selected region.
@@ -285,7 +269,7 @@ let g:coc_snippet_next = '<Tab>'
 " nerdcommenter
 """"""""""""""""""""""""""""""
 " 注释的时候自动加个空格, 强迫症必配
-let g:NERDSpaceDelims=1
+let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 let g:NERDAltDelims_python = 1
 " Align line-wise comment delimiters flush left instead of following code IndentationError
@@ -369,7 +353,11 @@ map('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>', opts)
 ------------------------------------------------------
 require('nvim-treesitter.configs').setup {
   -- A list of parser names, or "all"
-  ensure_installed = { "c", "cpp", "vim", "lua", "rust", "python" },
+  ensure_installed = {
+      "c", "cpp", "vim", "lua", "rust",
+      "python", "markdown", "racket", "bash", "java",
+      "make", "json", "jsonc", "scheme",
+  },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
@@ -437,7 +425,6 @@ require("FTerm").setup({
 })
 
 require("transparent").setup({
-  enable = true, -- boolean: enable transparent
   extra_groups = { -- table/string: additional groups that should be cleared
     -- In particular, when you set it to 'all', that means all available groups
     "FloatBorder", -- for floating windows
@@ -450,11 +437,12 @@ require("transparent").setup({
     "BufferLineSeparator",
     "BufferLineIndicatorSelected",
   },
-  exclude = {
+  exclude_groups = {
     "LineNr",
     -- "CursorLineNr",
   }, -- table: groups you don't want to clear
 })
+vim.g.transparent_enabled = true
 
 EOF
 endif
