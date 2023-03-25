@@ -17,11 +17,10 @@
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    # git
+    git
     command-not-found
     extract
     autojump
-    cp
     colored-man-pages
     safe-paste # 复制脚本后不会立即运行
     autopep8
@@ -31,40 +30,22 @@ plugins=(
     tmux
     fzf
     ripgrep
-    web-search
     sudo
+    virtualenv
 )
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source $ZSH/oh-my-zsh.sh
 source <(antibody init)
 
 antibody bundle romkatv/powerlevel10k
 antibody bundle zsh-users/zsh-syntax-highlighting
-antibody bundle zsh-users/zsh-autosuggestions
-antibody bundle zsh-users/zsh-completions
-
-for file (
-    # racket completion
-    /usr/share/racket/pkgs/shell-completion/racket-completion.zsh
-    $HOME/.cargo/env
-); do
-  if [[ -r "$file" ]]; then
-    source "$file"
-  fi
-done
-unset file
-
-typeset -A cmds
-cmds=(npm "completion")
-for cmd arg in "${(@kv)cmds}"; do
-  if [[ -x "$(command -v ${cmd})" ]]; then
-      source <($cmd $arg)
-  fi
-done
+antibody bundle Aloxaf/fzf-tab
 
 # https://github.com/sharkdp/vivid
+# cargo install vivid
 if [[ -x "$(command -v vivid)" ]]; then
-    export LS_COLORS="$(vivid generate ayu)"
+    export LS_COLORS="$(vivid generate molokai)"
 fi
 
 export LANG=en_US.UTF-8
@@ -80,7 +61,7 @@ alias bclang='bear -- clang'
 alias bclang++='bear -- clang++'
 alias open='open_command'
 
-# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=blue'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#9ed072,bold'
 if [[ $TMUX != "" ]] then
     export TERM="tmux-256color"
 else
