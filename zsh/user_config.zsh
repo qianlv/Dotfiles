@@ -134,6 +134,9 @@ fzf-man-widget() {
 # `Ctrl-H` keybinding to launch the widget (this widget works only on zsh, don't know how to do it on bash and fish (additionaly pressing`ctrl-backspace` will trigger the widget to be executed too because both share the same keycode)
 bindkey '^h' fzf-man-widget
 zle -N fzf-man-widget
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
 # core dump location
 # ulimit -c unlimited
