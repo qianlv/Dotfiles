@@ -9,7 +9,7 @@
     ],
     "clangd.fallbackFlags": [
         // "-std=gnu99"
-        "-std=c++17"
+        "-std=c++11"
     ],
     // "clangd.fallbackFlags": ["-std=c99"],
     // "clangd.fallbackFlags": ["-std=c90"],
@@ -38,8 +38,15 @@
     },
     "list.insertMappings": {
         "<C-t>": "action:tabe",
-        "<C-w>": "command:wincmd k"
+        "<C-w>": "command:wincmd k",
+        // "<C-j>": "normal:j"
+
     },
+
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/usr/share/java/**/*.jar",
+    ],
 
     // racket
     "languageserver": {
@@ -67,15 +74,15 @@
     // "coc.preferences.previewAutoClose": false
     // auto format
     "[python]": {
-        "coc.preferences.formatOnSave": true,
+        "coc.preferences.formatOnSave": false,
         "semanticTokens.enable": false
     },
     "[java]" : {
-        "coc.preferences.formatOnSave": true,
+        "coc.preferences.formatOnSave": false,
     },
     "[rust]": {
         "coc.preferences.formatOnSave": true,
-        "semanticTokens.enable": false
+        "semanticTokens.enable": true 
     },
     "[c][cpp]": {
         "coc.preferences.formatOnSave": false,
