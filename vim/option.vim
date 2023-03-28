@@ -87,12 +87,6 @@ let mapleader="\<Space>"
 """"""""""""""""""""""""""""""
 " Indent
 """"""""""""""""""""""""""""""
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
-" set shiftwidth=3
-" set tabstop=3
-" set softtabstop=3
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
@@ -159,8 +153,6 @@ if has("autocmd")
 
     au BufRead,BufNewFile *.s,*.S set filetype=gas
 
-    " autocmd FileType list set winhighlight=CursorLine:CocUnderline
-
 endif 
 
 " https://www.reddit.com/r/vim/comments/2362q1/let_mapleader_now_how_do_i_get_rid_of_that_delay/
@@ -169,3 +161,11 @@ augroup FastEscape
     au InsertEnter * set timeoutlen=0
     au InsertLeave * set timeoutlen=1000
 augroup END
+
+function SwitchShiftTabWidth(width)
+    execute "set shiftwidth=" . a:width
+    execute "set tabstop=" . a:width
+    execute "set softtabstop=" . a:width
+endfunction
+
+command! -nargs=? SetTW :call SwitchShiftTabWidth(<f-args>)
