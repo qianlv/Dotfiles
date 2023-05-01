@@ -337,7 +337,6 @@ let g:vista_executive_for = {
   \ 'py': 'coc'
   \ }
 
-
 " load lua config
 if has('nvim')
 lua <<EOF
@@ -380,7 +379,7 @@ require('nvim-treesitter.configs').setup {
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
     -- the name of the parser)
     -- list of language that will be disabled
-    disable = {"c", "cpp"},
+    disable = {"c", "cpp", "rust"},
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     -- disable = function(lang, buf)
     --     local max_filesize = 100 * 1024 -- 100 KB
@@ -403,7 +402,7 @@ require('nvim-treesitter.configs').setup {
 
 -- folder config
 vim.opt.foldlevel = 2
-vim.opt.foldmethod = "expr"
+vim.opt.foldmethod = "manual"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 require("FTerm").setup({
