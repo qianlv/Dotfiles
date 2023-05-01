@@ -138,7 +138,10 @@ bindkey '^h' fzf-man-widget
 zle -N fzf-man-widget
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+# zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
+LAZY_CONFIG=~/.config/lazy
+alias lazy="XDG_CONFIG_HOME=$LAZY_CONFIG/config XDG_DATA_HOME=$LAZY_CONFIG/data XDG_STATE_HOME=$LAZY_CONFIG/state XDG_CACHE_HOME=$LAZY_CONFIG/cache nvim"
 
 # core dump location
 # ulimit -c unlimited
