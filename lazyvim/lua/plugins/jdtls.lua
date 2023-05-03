@@ -77,6 +77,7 @@ return {
           java = {
             project = {
               referencedLibraries = {
+                "lib/**/*.jar",
                 "/usr/share/java/*.jar",
               }
             },

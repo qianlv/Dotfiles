@@ -11,8 +11,7 @@ return {
           local dict = require("cmp_dictionary")
           -- dict.update()
           dict.setup({
-            -- The following are default values.
-            exact = -1,
+            exact = 3,
             first_case_insensitive = false,
             document = true,
             document_command = "wn %s -over",
