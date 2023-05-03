@@ -1,118 +1,121 @@
 {
-  // https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
-  // c++, c
-  "clangd.enabled": true,
-  "clangd.arguments": [
-    "--header-insertion=never",
-    "-fallback-style=Webkit"
-  ],
-  "clangd.fallbackFlags": [
-    // "-std=gnu99"
-    "-std=c++11"
-  ],
-  // "clangd.fallbackFlags": ["-std=c99"],
-  // "clangd.fallbackFlags": ["-std=c90"],
-  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.3/clangd_15.0.3/bin/clangd",
-  // json
-  // "json.enable": false,
-  // "json.trace.server": "messages",
-  // "json.format.enable": true,
-  // python
-  "pyright.enable": true,
-  "python.pythonPath": "/usr/bin/python3",
-  "python.sortImports.path": "isort",
-  "pyright.organizeimports.provider": "isort",
-  "python.linting.flake8Enabled": true,
-  // rust
-  // "rust-analyzer.hoverActions.linksInHover": true,
-  "rust-analyzer.updates.checkOnStartup": false,
-  // coc-lists
-  "list.normalMappings": {
-    "t": "action:tabe",
-    "v": "action:vsplit",
-    "s": "action:split",
-    "d": "expr:GetDeleteAction"
-  },
-  "list.insertMappings": {
-    "<C-t>": "action:tabe",
-    "<C-w>": "command:wincmd k"
-    // "<C-j>": "normal:j"
-  },
-  "java.project.referencedLibraries": [
-    "lib/**/*.jar",
-    "/usr/share/java/**/*.jar",
-  ],
-  // racket
-  "languageserver": {
-    "racket": {
-      "command": "racket",
-      "trace.server": "verbose",
-      "args": [
-        "--lib",
-        "racket-langserver"
-      ],
-      "filetypes": [
+    // coc settings
+    "diagnostic.enableMessage": "never",
+    "diagnostic.virtualText": true,
+    "diagnostic.virtualTextCurrentLineOnly": true,
+    // https://github.com/neoclide/coc.nvim/blob/release/doc/coc.txt
+    "suggest.labelMaxLength": 50,
+    "suggest.minTriggerInputLength": 3,
+    "suggest.noselect": false,
+    // "coc.preferences.hoverTarget": "float",
+    // "coc.preferences.previewAutoClose": false
+    // auto format
+    "semanticTokens.enable": true,
+    "coc.preferences.formatOnSave": true,
+    "[c][cpp][java]": {
+        "coc.preferences.formatOnSave": false,
+    },
+    "coc.preferences.extensionUpdateCheck": "daily",
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+    // https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
+    // c++, c
+    "clangd.enabled": true,
+    "clangd.arguments": [
+        "--background-index",
+        "--clang-tidy",
+        "--completion-style=bundled",
+        "--header-insertion=iwyu",
+        "--pch-storage=memory",
+        "--suggest-missing-includes",
+        "--enable-config",
+        "--function-arg-placeholders",
+        "--cross-file-rename",
+        "--fallback-style=Webkit",
+        "-j=4",
+    ],
+    "clangd.fallbackFlags": [
+        // "-std=gnu99"
+        "-std=c++11"
+    ],
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.3/clangd_15.0.3/bin/clangd",
+    // python
+    "pyright.enable": true,
+    "python.sortImports.path": "isort",
+    "pyright.organizeimports.provider": "isort",
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "autopep8",
+    // rust
+    "rust-analyzer.updates.checkOnStartup": false,
+    "rust-analyzer.check.overrideCommand": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--message-format=json",
+        "--all-targets"
+    ],
+    // coc-lists
+    "list.normalMappings": {
+        "t": "action:tabe",
+        "v": "action:vsplit",
+        "s": "action:split",
+        "d": "expr:GetDeleteAction"
+    },
+    "list.insertMappings": {
+        "<C-t>": "action:tabe",
+        "<C-w>": "command:wincmd k"
+        // "<C-j>": "normal:j"
+    },
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/usr/share/java/**/*.jar",
+    ],
+    // racket
+    "languageserver": {
+        "racket": {
+            "command": "racket",
+            "trace.server": "verbose",
+            "args": [
+                "--lib",
+                "racket-langserver"
+            ],
+            "filetypes": [
+                "scheme"
+            ]
+        }
+    },
+    // coc-pairs
+    "pairs.disableLanguages": [
         "scheme"
-      ]
-    }
-  },
-  // coc-pairs
-  "pairs.disableLanguages": [
-    "scheme"
-  ],
-  // https://github.com/neoclide/coc.nvim/blob/release/doc/coc.txt
-  "suggest.labelMaxLength": 50,
-  "suggest.minTriggerInputLength": 3,
-  "suggest.noselect": false,
-  // "coc.preferences.hoverTarget": "float",
-  // "coc.preferences.previewAutoClose": false
-  // auto format
-  "[python]": {
-    "coc.preferences.formatOnSave": true,
-    "semanticTokens.enable": false
-  },
-  "[java]": {
-    "coc.preferences.formatOnSave": false,
-  },
-  "[rust]": {
-    "coc.preferences.formatOnSave": true,
-    "semanticTokens.enable": true
-  },
-  "[c][cpp]": {
-    "coc.preferences.formatOnSave": false,
-    "semanticTokens.enable": true
-  },
-  "coc.preferences.extensionUpdateCheck": "daily",
-  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-  // sh
-  "sh.enable": true,
-  // coc-diagnostic
-  "diagnostic-languageserver.enable": false,
-  // "diagnostic.enable": false,
-  "diagnostic-languageserver.filetypes": {
-    // lint `sh` (includes `bash`) files
-    "sh": "shellcheck"
-  },
-  "diagnostic-languageserver.formatFiletypes": {
-    // format `sh` (includes `bash`) files using formatter defined below
-    "sh": "shfmt"
-  },
-  "diagnostic-languageserver.formatters": {
-    // define our formatter so that we can reference it from
-    // `diagnostic-languageserver.formatFiletypes`
-    "shfmt": {
-      "command": "shfmt",
-      // all the below args are entirely optional
-      // primarily listed here to call out that flags which take an
-      // argument (such as `-i <num-spaces>` for specifying indentation)
-      // should be split into two strings, the flag and then the value
-      "args": [
-        "-i",
-        "2",
-        "-bn",
-        "-ci",
-        "-sr"
-      ]
-    }
-  }
+    ],
+    // sh
+    "sh.enable": true,
+    // coc-diagnostic
+    "diagnostic-languageserver.enable": false,
+    // "diagnostic.enable": false,
+    "diagnostic-languageserver.filetypes": {
+        // lint `sh` (includes `bash`) files
+        "sh": "shellcheck"
+    },
+    "diagnostic-languageserver.formatFiletypes": {
+        // format `sh` (includes `bash`) files using formatter defined below
+        "sh": "shfmt"
+    },
+    "diagnostic-languageserver.formatters": {
+        // define our formatter so that we can reference it from
+        // `diagnostic-languageserver.formatFiletypes`
+        "shfmt": {
+            "command": "shfmt",
+            // all the below args are entirely optional
+            // primarily listed here to call out that flags which take an
+            // argument (such as `-i <num-spaces>` for specifying indentation)
+            // should be split into two strings, the flag and then the value
+            "args": [
+                "-i",
+                "2",
+                "-bn",
+                "-ci",
+                "-sr"
+            ]
+        }
+    },
 }
