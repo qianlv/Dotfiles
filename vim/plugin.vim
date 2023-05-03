@@ -45,6 +45,10 @@ if has('nvim')
     let g:copilot_filetypes = {'markdown': v:true}
 endif
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'fannheyward/telescope-coc.nvim'
+
 Plug 'Shirk/vim-gas', {'for': 'gas'}    " GNU assembly syntax highlight
 " " Initialize plugin system
 call plug#end()
@@ -227,7 +231,7 @@ nnoremap <silent><nowait> <leader>o  :<C-u>CocList outline<cr>
 " Search workspace symbols.
 nnoremap <silent><nowait> <leader>s  :<C-u>CocList -I symbols<cr>
 " Buffer List
-nnoremap <silent><nowait> <leader>ls  :<C-u>CocList buffers<cr>
+" nnoremap <silent><nowait> <leader>ls  :<C-u>CocList buffers<cr>
 " Do default action for next item.
 " nnoremap <silent><nowait> <leader>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
@@ -235,7 +239,7 @@ nnoremap <silent><nowait> <leader>ls  :<C-u>CocList buffers<cr>
 " Resume latest coc list.
 nnoremap <silent><nowait> <leader>re  :<C-u>CocListResume<CR>
 " Search files
-nnoremap <silent><nowait> <leader>p  :<C-u>CocList files<CR>
+" nnoremap <silent><nowait> <leader>p  :<C-u>CocList files<CR>
 " Restar Coc
 nnoremap <silent><nowait> <leader>rs  :<C-u>CocRestart<CR>
 " Open CocConfig
@@ -263,6 +267,7 @@ let g:coc_snippet_next = '<Tab>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 " let g:coc_snippet_prev = '<c-k>'
+let g:coc_snippet_next = '<S-tab>'
 
 
 """"""""""""""""""""""""""""""
@@ -373,13 +378,13 @@ require('nvim-treesitter.configs').setup {
 
   highlight = {
     -- `false` will disable the whole extension
-    enable = true,
+    enable = false,
 
     -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
     -- the name of the parser)
     -- list of language that will be disabled
-    disable = {"c", "cpp", "rust"},
+    -- disable = {"c", "cpp", "rust"},
     -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
     -- disable = function(lang, buf)
     --     local max_filesize = 100 * 1024 -- 100 KB
@@ -442,6 +447,14 @@ require("transparent").setup({
   }, -- table: groups you don't want to clear
 })
 vim.g.transparent_enabled = true
+
+require('telescope').load_extension('coc')
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 EOF
 endif
