@@ -7,8 +7,8 @@ nnoremap <esc> :nohl<cr>
 " chang to normal
 tnoremap <silent> <Esc> <C-\><C-n>
 
-nnoremap <silent><nowait> <C-l> gt
-nnoremap <silent><nowait> <C-h> gT
+nnoremap <silent><nowait> <S-l> gt
+nnoremap <silent><nowait> <S-h> gT
 
 cmap w!! w !sudo tee %
 cmap w8 w ++enc=utf-8
