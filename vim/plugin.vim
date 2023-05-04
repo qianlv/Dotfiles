@@ -258,9 +258,6 @@ function! s:GrepArgs(...)
   return join(list, "\n")
 endfunction
 
-" Keymapping for grep word under cursor with interactive mode
-nnoremap <silent> <Leader>gr :exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
-
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
 " let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_next = '<Tab>'
@@ -341,6 +338,7 @@ let g:vista_executive_for = {
   \ 'c': 'coc',
   \ 'py': 'coc'
   \ }
+
 
 " load lua config
 if has('nvim')
@@ -455,6 +453,12 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set("n", "<leader>gr", function()
+    local cword = vim.fn.expand "<cword>"
+    builtin.live_grep {
+        default_text = cword,
+    }
+end)
 
 EOF
 endif

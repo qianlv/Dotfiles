@@ -7,10 +7,8 @@
     "suggest.labelMaxLength": 50,
     "suggest.minTriggerInputLength": 3,
     "suggest.noselect": false,
-    // "coc.preferences.hoverTarget": "float",
-    // "coc.preferences.previewAutoClose": false
-    // auto format
     "semanticTokens.enable": true,
+    // auto format
     "coc.preferences.formatOnSave": true,
     "[c][cpp][java]": {
         "coc.preferences.formatOnSave": false,
