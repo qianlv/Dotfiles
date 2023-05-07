@@ -459,6 +459,27 @@ vim.keymap.set("n", "<leader>gr", function()
         default_text = cword,
     }
 end)
+vim.keymap.set('n', '<leader>fm', function()
+    require("telescope.builtin").man_pages()
+end)
+
+local actions = require "telescope.actions"
+require('telescope').setup({
+defaults = {
+    mappings = {
+        i = {
+            ["<C-n>"] = actions.cycle_history_next,
+            ["<C-p>"] = actions.cycle_history_prev,
+            ["<C-j>"] = actions.move_selection_next,
+            ["<C-k>"] = actions.move_selection_previous,
+        },
+        n = { ["q"] = actions.close },
+    },
+},
+pickers = {
+    man_pages = { sections = { "1", "2", "3" } }
+},
+})
 
 EOF
 endif
