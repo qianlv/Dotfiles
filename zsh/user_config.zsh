@@ -142,6 +142,8 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 LAZY_CONFIG=~/.config/lazy
 alias lazy="XDG_CONFIG_HOME=$LAZY_CONFIG/config XDG_DATA_HOME=$LAZY_CONFIG/data XDG_STATE_HOME=$LAZY_CONFIG/state XDG_CACHE_HOME=$LAZY_CONFIG/cache nvim"
+ASTRO_CONFIG=~/.config/astronvim
+alias astro="XDG_CONFIG_HOME=$ASTRO_CONFIG/config XDG_DATA_HOME=$ASTRO_CONFIG/data XDG_STATE_HOME=$ASTRO_CONFIG/state XDG_CACHE_HOME=$ASTRO_CONFIG/cache nvim"
 
 # core dump location
 # ulimit -c unlimited
