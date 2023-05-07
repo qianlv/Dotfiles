@@ -2,12 +2,12 @@ return {
   options = {
     opt = {
       cmdheight = 1,
-      listchars = {
-        tab = "»·",
-        trail = "·",
-      },
+      listchars = { tab = "» ", trail = "·", extends = "…", precedes = "…", nbsp = "␣" },
       list = true,
     },
+    g = {
+      icons_enabled = false,
+    }
   },
 
   colorscheme = "gruvbox-material",
@@ -23,10 +23,30 @@ return {
         function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
         desc = "Comment line",
       },
+      ["<A-j>"] = {
+        "<cmd>m .+1<CR>==", desc = "Move line down"
+      },
+      ["<A-k>"] = {
+        "<cmd>m .-2<CR>==", desc = "Move line up"
+      },
     },
     v = {
       ["<Cr>"] = {
         "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line"
+      },
+      ["<A-j>"] = {
+        "<cmd>m '>+1<CR>gv=gv", desc = "Move line down"
+      },
+      ["<A-k>"] = {
+        "<cmd>m '<-2<CR>gv=gv", desc = "Move line up"
+      },
+    },
+    i = {
+      ["<A-j>"] = {
+        "<esc><cmd>m .+1<CR>==gi", desc = "Move line down"
+      },
+      ["<A-k>"] = {
+        "<esc><cmd>m .-2<CR>==gi", desc = "Move line up"
       },
     },
   },
@@ -140,7 +160,6 @@ return {
         }
       }
     },
-    -- { import = "astrocommunity.bars-and-lines.lualine-nvim"},
     { import = "astrocommunity.pack.rust" },
     { import = "astrocommunity.pack.bash" },
     { import = "astrocommunity.pack.python" },
@@ -192,6 +211,7 @@ return {
       },
       opts = function(_, opts)
         local cmp = require("cmp")
+        local lspkind_status_ok, lspkind = pcall(require, "lspkind")
         local sources = {
           { name = "calc" },
           {
@@ -200,6 +220,10 @@ return {
           },
         }
         opts.sources = cmp.config.sources(vim.list_extend(opts.sources, sources))
+        opts.formatting = {
+          fields = { "abbr", "menu", "kind" },
+          format = lspkind_status_ok and lspkind.cmp_format(astronvim.lspkind) or nil,
+        }
         return opts
       end
     },
