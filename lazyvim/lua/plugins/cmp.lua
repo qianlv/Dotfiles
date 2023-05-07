@@ -41,22 +41,6 @@ return {
       }
 
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, sources))
-      opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          local luasnip = require("luasnip")
-          local copilot_keys = vim.fn["copilot#Accept"]()
-          if luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          elseif copilot_keys ~= "" and type(copilot_keys) == "string" then
-            vim.api.nvim_feedkeys(copilot_keys, "i", true)
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
-      })
     end,
   },
 }
