@@ -7,7 +7,7 @@ return {
     },
     g = {
       icons_enabled = false,
-    }
+    },
   },
 
   colorscheme = "gruvbox-material",
@@ -56,6 +56,8 @@ return {
       "clangd",
       "jdtls",
       "rust_analyzer",
+      "lua_ls",
+      "racket_lsp"
     },
     formatting = {
       format_on_save = false, -- enable or disable automatic formatting on save
@@ -109,6 +111,13 @@ return {
           },
         },
       },
+      racket_lsp = function()
+        return {
+          cmd = { "/usr/bin/racket", "--lib", "racket-langserver" },
+          filetypes = { "racket" },
+          root_dir = require("lspconfig.util").root_pattern("*.rkt", ".git"),
+        }
+      end,
     },
   },
   plugins = {
