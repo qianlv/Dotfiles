@@ -72,9 +72,7 @@ alias bclang++='bear -- clang++'
 alias open='open_command'
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#9ed072,bold'
-if [[ $TMUX != "" ]] then
-    export TERM="tmux-256color"
-else
+if [[ -z "$TMUX" ]]; then
     export TERM="xterm-256color"
 fi
 
@@ -140,10 +138,9 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
-LAZY_CONFIG=~/.config/lazy
-alias lazy="XDG_CONFIG_HOME=$LAZY_CONFIG/config XDG_DATA_HOME=$LAZY_CONFIG/data XDG_STATE_HOME=$LAZY_CONFIG/state XDG_CACHE_HOME=$LAZY_CONFIG/cache nvim"
 ASTRO_CONFIG=~/.config/astronvim
-alias astro="XDG_CONFIG_HOME=$ASTRO_CONFIG/config XDG_DATA_HOME=$ASTRO_CONFIG/data XDG_STATE_HOME=$ASTRO_CONFIG/state XDG_CACHE_HOME=$ASTRO_CONFIG/cache nvim"
+# alias astro="XDG_CONFIG_HOME=$ASTRO_CONFIG/config XDG_DATA_HOME=$ASTRO_CONFIG/data XDG_STATE_HOME=$ASTRO_CONFIG/state XDG_CACHE_HOME=$ASTRO_CONFIG/cache nvim"
+alias astro="XDG_CONFIG_HOME=$ASTRO_CONFIG/config nvim"
 
 # core dump location
 # ulimit -c unlimited
