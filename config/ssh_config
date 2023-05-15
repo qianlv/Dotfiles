@@ -1,0 +1,29 @@
+Host Mac
+    HostName 192.168.7.231
+    User qianlv
+    Port 22
+    IdentityFile ~/.ssh/qianlv_id_rsa
+
+Host github.com
+    Hostname ssh.github.com
+    Port 443
+    User git
+    IdentityFile ~/.ssh/qianlv_id_rsa
+
+Host Nas
+    HostName 192.168.7.154
+    User admin
+    Port 22
+    IdentityFile ~/.ssh/qianlv_id_rsa
+
+Host NasUbuntu
+    HostName 192.168.7.222
+    User ubuntu
+    Port 22
+    IdentityFile ~/.ssh/qianlv_id_rsa
+
+Host VUbuntu
+    HostName 192.168.7.165
+    User qianlv
+    Port 22
+    IdentityFile ~/.ssh/qianlv_id_rsa
