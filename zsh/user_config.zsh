@@ -70,6 +70,7 @@ alias bg++='bear -- g++'
 alias bclang='bear -- clang'
 alias bclang++='bear -- clang++'
 alias open='open_command'
+alias tmux='tmux -2'
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#9ed072,bold'
 if [[ -z "$TMUX" ]]; then
