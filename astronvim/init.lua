@@ -1,4 +1,4 @@
-return { 
+return {
   options = {
     opt = {
       cmdheight = 1,
@@ -218,9 +218,16 @@ return {
           end,
         },
       },
+
       opts = function(_, opts)
         local cmp = require("cmp")
+        local _, luasnip = pcall(require, "luasnip")
         local lspkind_status_ok, lspkind = pcall(require, "lspkind")
+        local function has_words_before()
+          local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+          return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+        end
+
         local sources = {
           { name = "calc" },
           {
@@ -229,10 +236,26 @@ return {
           },
         }
         opts.sources = cmp.config.sources(vim.list_extend(opts.sources, sources))
+
         opts.formatting = {
           fields = { "abbr", "menu", "kind" },
           format = lspkind_status_ok and lspkind.cmp_format(astronvim.lspkind) or nil,
         }
+
+        opts.mapping["<Tab>"] = cmp.mapping(function(fallback)
+          print("Tab pressed")
+          if require("copilot.suggestion").is_visible() then
+            require("copilot.suggestion").accept()
+          elseif cmp.visible() then
+            cmp.select_next_item()
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          elseif has_words_before() then
+            cmp.complete()
+          else
+            fallback()
+          end
+        end, { "i", "s" })
         return opts
       end
     },
