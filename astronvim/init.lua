@@ -14,7 +14,10 @@ return {
 
   mappings = {
     n = {
-      ["<S-l>"] = { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" },
+      ["<S-l>"] = {
+        function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+        desc = "Next buffer",
+      },
       ["<S-h>"] = {
         function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
         desc = "Previous buffer",
@@ -24,29 +27,36 @@ return {
         desc = "Comment line",
       },
       ["<A-j>"] = {
-        "<cmd>m .+1<CR>==", desc = "Move line down"
+        "<cmd>m .+1<CR>==",
+        desc = "Move line down",
       },
       ["<A-k>"] = {
-        "<cmd>m .-2<CR>==", desc = "Move line up"
+        "<cmd>m .-2<CR>==",
+        desc = "Move line up",
       },
     },
     v = {
       ["<Cr>"] = {
-        "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>", desc = "Toggle comment line"
+        "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
+        desc = "Toggle comment line",
       },
       ["<A-j>"] = {
-        "<cmd>m '>+1<CR>gv=gv", desc = "Move line down"
+        "<cmd>m '>+1<CR>gv=gv",
+        desc = "Move line down",
       },
       ["<A-k>"] = {
-        "<cmd>m '<-2<CR>gv=gv", desc = "Move line up"
+        "<cmd>m '<-2<CR>gv=gv",
+        desc = "Move line up",
       },
     },
     i = {
       ["<A-j>"] = {
-        "<esc><cmd>m .+1<CR>==gi", desc = "Move line down"
+        "<esc><cmd>m .+1<CR>==gi",
+        desc = "Move line down",
       },
       ["<A-k>"] = {
-        "<esc><cmd>m .-2<CR>==gi", desc = "Move line up"
+        "<esc><cmd>m .-2<CR>==gi",
+        desc = "Move line up",
       },
     },
   },
@@ -57,14 +67,14 @@ return {
       "jdtls",
       "rust_analyzer",
       "lua_ls",
-      "racket_lsp"
+      "racket_lsp",
     },
     formatting = {
       format_on_save = false, -- enable or disable automatic formatting on save
     },
     setup_handlers = {
       -- add custom handler
-      clangd = function(_, opts) require("clangd_extensions").setup { server = opts } end
+      clangd = function(_, opts) require("clangd_extensions").setup { server = opts } end,
     },
     config = {
       clangd = {
@@ -84,7 +94,7 @@ return {
           "--cross-file-rename",
           "-j=4",
         },
-        single_file_support = true
+        single_file_support = true,
       },
       rust_analyzer = {
         settings = {
@@ -121,20 +131,20 @@ return {
     },
   },
   plugins = {
-    "sainnhe/gruvbox-material",
-    config = function() 
-      print("init gruvbox-material")
-      vim.g.gruvbox_material_foreground = "mix"
-      vim.g.gruvbox_material_background = "medium"
-      vim.g.gruvbox_material_ui_contrast = 1
-      vim.g.gruvbox_material_enable_bold = 1
-      vim.g.gruvbox_material_enable_italic = 1
-      vim.g.gruvbox_material_diagnostic_text_highlight = 1
-      vim.g.gruvbox_material_diagnostic_line_highlight = 1
-      vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
-    end,
-
-    "hardhackerlabs/theme-vim",
+    {
+      "sainnhe/gruvbox-material",
+      config = function()
+        print "init gruvbox-material"
+        vim.g.gruvbox_material_foreground = "mix"
+        vim.g.gruvbox_material_background = "medium"
+        vim.g.gruvbox_material_ui_contrast = 1
+        vim.g.gruvbox_material_enable_bold = 1
+        vim.g.gruvbox_material_enable_italic = 1
+        vim.g.gruvbox_material_diagnostic_text_highlight = 1
+        vim.g.gruvbox_material_diagnostic_line_highlight = 1
+        vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
+      end,
+    },
 
     "p00f/clangd_extensions.nvim", -- install lsp plugin
     {
@@ -146,7 +156,8 @@ return {
 
     "AstroNvim/astrocommunity",
     { import = "astrocommunity.completion.copilot-lua" },
-    { -- further customize the options set by the community
+    {
+      -- further customize the options set by the community
       "copilot.lua",
       opts = {
         suggestion = {
@@ -165,9 +176,9 @@ return {
       "nvim-telescope/telescope.nvim",
       opts = {
         pickers = {
-          man_pages = { sections = { "1", "2", "3" } }
-        }
-      }
+          man_pages = { sections = { "1", "2", "3" } },
+        },
+      },
     },
     { import = "astrocommunity.pack.rust" },
     { import = "astrocommunity.pack.bash" },
@@ -182,7 +193,7 @@ return {
               referencedLibraries = {
                 "lib/**/*.jar",
                 "/usr/share/java/*.jar",
-              }
+              },
             },
           },
         },
@@ -195,9 +206,8 @@ return {
         {
           "uga-rosa/cmp-dictionary",
           config = function()
-            local dict = require("cmp_dictionary")
-            -- dict.update()
-            dict.setup({
+            local dict = require "cmp_dictionary"
+            dict.setup {
               exact = 3,
               first_case_insensitive = false,
               document = true,
@@ -207,20 +217,20 @@ return {
               max_items = 7,
               capacity = 7,
               debug = false,
-            })
+            }
 
-            dict.switcher({
+            dict.switcher {
               spelllang = {
                 -- en = "/home/qianlv/.config/english.dict",
                 en = "/home/qianlv/.config/google-10000-english.txt",
               },
-            })
+            }
           end,
         },
       },
 
       opts = function(_, opts)
-        local cmp = require("cmp")
+        local cmp = require "cmp"
         local _, luasnip = pcall(require, "luasnip")
         local lspkind_status_ok, lspkind = pcall(require, "lspkind")
         local function has_words_before()
@@ -243,7 +253,6 @@ return {
         }
 
         opts.mapping["<Tab>"] = cmp.mapping(function(fallback)
-          print("Tab pressed")
           if require("copilot.suggestion").is_visible() then
             require("copilot.suggestion").accept()
           elseif cmp.visible() then
@@ -257,14 +266,14 @@ return {
           end
         end, { "i", "s" })
         return opts
-      end
+      end,
     },
     {
       "rebelot/heirline.nvim",
       opts = function(_, opts)
         opts.winbar = nil
         return opts
-      end
+      end,
     },
   },
 }
