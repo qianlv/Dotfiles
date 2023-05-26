@@ -6,7 +6,7 @@ return {
       list = true,
     },
     g = {
-      icons_enabled = false,
+      icons_enabled = true,
     },
   },
 
@@ -134,7 +134,6 @@ return {
     {
       "sainnhe/gruvbox-material",
       config = function()
-        print "init gruvbox-material"
         vim.g.gruvbox_material_foreground = "mix"
         vim.g.gruvbox_material_background = "medium"
         vim.g.gruvbox_material_ui_contrast = 1
@@ -247,10 +246,10 @@ return {
         }
         opts.sources = cmp.config.sources(vim.list_extend(opts.sources, sources))
 
-        opts.formatting = {
-          fields = { "abbr", "menu", "kind" },
-          format = lspkind_status_ok and lspkind.cmp_format(astronvim.lspkind) or nil,
-        }
+        -- opts.formatting = {
+        --   fields = { "abbr", "menu", "kind" },
+        --   format = lspkind_status_ok and lspkind.cmp_format(astronvim.lspkind) or nil,
+        -- }
 
         opts.mapping["<Tab>"] = cmp.mapping(function(fallback)
           if require("copilot.suggestion").is_visible() then
