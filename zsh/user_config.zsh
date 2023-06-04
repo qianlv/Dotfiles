@@ -49,6 +49,7 @@ antibody bundle romkatv/powerlevel10k
 antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle Aloxaf/fzf-tab
+antibody bundle zpm-zsh/clipboard
 antibody bundle skywind3000/z.lua
 export _ZL_MATCH_MODE=1 # z.lua enhanced mode
 
@@ -94,14 +95,6 @@ case "$OSTYPE" in
     linux*)
         if [[ "$(uname -r)" == *icrosoft* ]];
         then
-            # 配置win32yank.exe
-            # curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
-            # unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
-            # chmod +x /tmp/win32yank.exe
-            # sudo mv /tmp/win32yank.exe /usr/local/bin/
-            alias pbcopy='win32yank.exe -i --crlf'
-            alias pbpaste='win32yank.exe -o --lf'
-
             # X11 configure
             # https://stackoverflow.com/questions/61110603/how-to-set-up-working-x11-forwarding-on-wsl2
             # export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0
