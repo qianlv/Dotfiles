@@ -2,11 +2,18 @@ return {
   options = {
     opt = {
       cmdheight = 1,
-      listchars = { tab = "» ", trail = "·", extends = "…", precedes = "…", nbsp = "␣" },
+      -- listchars = { tab = "»·", trail = "·", extends = "…", precedes = "…", nbsp = "␣" },
       list = true,
+      foldcolumn = "0",
+      signcolumn = "no",
+      autoindent = true,
+      smarttab = true,
+      backspace = { "indent", "eol", "start" },
+      mouse = "", -- forbid mouse
     },
     g = {
       icons_enabled = true,
+      diagnostics_mode = 2,
     },
   },
 
@@ -34,6 +41,9 @@ return {
         "<cmd>m .-2<CR>==",
         desc = "Move line up",
       },
+      ["<esc>"] = {
+        "<cmd>nohl<cr>",
+      },
     },
     v = {
       ["<Cr>"] = {
@@ -60,6 +70,7 @@ return {
       },
     },
   },
+
   lsp = {
     servers = {
       "pyright",
@@ -145,6 +156,34 @@ return {
       end,
     },
 
+    {
+      "jose-elias-alvarez/null-ls.nvim",
+      opts = function(_, config)
+        -- config variable is the default configuration table for the setup function call
+        local null_ls = require "null-ls"
+
+        -- Check supported formatters and linters
+        -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
+        -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+        config.sources = {
+          -- Set a formatter
+          -- null_ls.builtins.formatting.stylua,
+          -- null_ls.builtins.formatting.prettier,
+          null_ls.builtins.formatting.autopep8,
+        }
+        return config -- return final config table
+      end,
+    },
+
+    {
+      "nvim-treesitter/nvim-treesitter",
+      opts = {
+        indent = {
+          disable = { "python" },
+        },
+      },
+    },
+
     "p00f/clangd_extensions.nvim", -- install lsp plugin
     {
       "williamboman/mason-lspconfig.nvim",
@@ -179,6 +218,7 @@ return {
         },
       },
     },
+    { import = "astrocommunity.utility.transparent-nvim"},
     { import = "astrocommunity.pack.rust" },
     { import = "astrocommunity.pack.bash" },
     { import = "astrocommunity.pack.python" },
@@ -231,7 +271,6 @@ return {
       opts = function(_, opts)
         local cmp = require "cmp"
         local _, luasnip = pcall(require, "luasnip")
-        local lspkind_status_ok, lspkind = pcall(require, "lspkind")
         local function has_words_before()
           local line, col = unpack(vim.api.nvim_win_get_cursor(0))
           return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
@@ -245,12 +284,6 @@ return {
           },
         }
         opts.sources = cmp.config.sources(vim.list_extend(opts.sources, sources))
-
-        -- opts.formatting = {
-        --   fields = { "abbr", "menu", "kind" },
-        --   format = lspkind_status_ok and lspkind.cmp_format(astronvim.lspkind) or nil,
-        -- }
-
         opts.mapping["<Tab>"] = cmp.mapping(function(fallback)
           if require("copilot.suggestion").is_visible() then
             require("copilot.suggestion").accept()
@@ -264,9 +297,12 @@ return {
             fallback()
           end
         end, { "i", "s" })
+        opts.mapping["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" })
+        opts.mapping["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" })
         return opts
       end,
     },
+
     {
       "rebelot/heirline.nvim",
       opts = function(_, opts)
@@ -274,5 +310,21 @@ return {
         return opts
       end,
     },
+
+    {
+      "rcarriga/nvim-notify",
+      opts = {
+        background_colour = "#000000",
+      }
+    },
   },
+
+  -- This function is run last and is a good place to configuring
+  -- augroups/autocommands and custom filetypes also this just pure lua so
+  -- anything that doesn't fit in the normal config locations above can go here
+  polish = function()
+    vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"])
+    vim.opt.mps:append "<:>"
+    -- vim.opt.mps:append("$:$")
+  end,
 }
