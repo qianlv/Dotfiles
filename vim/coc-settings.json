@@ -1,6 +1,6 @@
 {
     // coc settings
-    "diagnostic.enableMessage": "never",
+    // "diagnostic.enableMessage": "never",
     "diagnostic.virtualText": true,
     "diagnostic.virtualTextCurrentLineOnly": true,
     // https://github.com/neoclide/coc.nvim/blob/release/doc/coc.txt
@@ -35,7 +35,7 @@
         // "-std=gnu99"
         "-std=c++11"
     ],
-    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.3/clangd_15.0.3/bin/clangd",
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/16.0.2/clangd_16.0.2/bin/clangd",
     // python
     "pyright.enable": true,
     "python.sortImports.path": "isort",
@@ -77,7 +77,9 @@
                 "racket-langserver"
             ],
             "filetypes": [
-                "scheme"
+                "scheme",
+                "rkt",
+                "racket",
             ]
         }
     },

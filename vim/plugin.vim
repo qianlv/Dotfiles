@@ -287,6 +287,7 @@ let g:NERDCustomDelimiters = { 'gas' : {'left': '#'}}
 let g:indentLine_char = "┆"
 let g:indentLine_enabled = 1
 let g:autopep8_disable_show_diff=1
+let g:indentLine_fileTypeExclude = ['json', 'jsonc']
 
 """"""""""""""""""""""""""""""
 " NERDTree
@@ -399,7 +400,7 @@ require('nvim-treesitter.configs').setup {
     additional_vim_regex_highlighting = false,
   },
   indent = {
-    enable = false
+    enable = true
   },
 }
 
