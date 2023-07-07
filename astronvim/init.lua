@@ -1,13 +1,14 @@
+local utils = require "astronvim.utils"
 return {
   options = {
     opt = {
-      cmdheight = 1,
+      -- cmdheight = 1,
       -- listchars = { tab = "»·", trail = "·", extends = "…", precedes = "…", nbsp = "␣" },
       list = true,
       foldcolumn = "0",
       signcolumn = "no",
-      autoindent = true,
       smarttab = true,
+      autoindent = true,
       backspace = { "indent", "eol", "start" },
       mouse = "", -- forbid mouse
     },
@@ -169,7 +170,9 @@ return {
           -- Set a formatter
           -- null_ls.builtins.formatting.stylua,
           -- null_ls.builtins.formatting.prettier,
-          null_ls.builtins.formatting.autopep8,
+          -- null_ls.builtins.formatting.autopep8,
+          -- null_ls.builtins.formatting.black,
+          null_ls.builtins.diagnostics.clang_check,
         }
         return config -- return final config table
       end,
@@ -179,7 +182,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       opts = {
         indent = {
-          disable = { "python" },
+          -- disable = { "python" },
         },
       },
     },
@@ -218,7 +221,7 @@ return {
         },
       },
     },
-    { import = "astrocommunity.utility.transparent-nvim"},
+    { import = "astrocommunity.utility.transparent-nvim" },
     { import = "astrocommunity.pack.rust" },
     { import = "astrocommunity.pack.bash" },
     { import = "astrocommunity.pack.python" },
