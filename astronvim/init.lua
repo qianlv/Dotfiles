@@ -1,4 +1,3 @@
-local utils = require "astronvim.utils"
 return {
   options = {
     opt = {
@@ -73,21 +72,16 @@ return {
   },
 
   lsp = {
+    -- List of language servers to be set up that are already
+    -- installed without mason
     servers = {
-      "pyright",
-      "clangd",
-      "jdtls",
-      "rust_analyzer",
-      "lua_ls",
       "racket_lsp",
     },
+
     formatting = {
       format_on_save = false, -- enable or disable automatic formatting on save
     },
-    setup_handlers = {
-      -- add custom handler
-      clangd = function(_, opts) require("clangd_extensions").setup { server = opts } end,
-    },
+
     config = {
       clangd = {
         capabilities = {
@@ -142,6 +136,7 @@ return {
       end,
     },
   },
+
   plugins = {
     {
       "sainnhe/gruvbox-material",
@@ -187,14 +182,6 @@ return {
       },
     },
 
-    "p00f/clangd_extensions.nvim", -- install lsp plugin
-    {
-      "williamboman/mason-lspconfig.nvim",
-      opts = {
-        ensure_installed = { "clangd" }, -- automatically install lsp
-      },
-    },
-
     "AstroNvim/astrocommunity",
     { import = "astrocommunity.completion.copilot-lua" },
     {
@@ -223,6 +210,7 @@ return {
     },
     { import = "astrocommunity.utility.transparent-nvim" },
     { import = "astrocommunity.pack.rust" },
+    { import = "astrocommunity.pack.cpp" },
     { import = "astrocommunity.pack.bash" },
     { import = "astrocommunity.pack.python" },
     { import = "astrocommunity.pack.java" },
@@ -318,7 +306,7 @@ return {
       "rcarriga/nvim-notify",
       opts = {
         background_colour = "#000000",
-      }
+      },
     },
   },
 
@@ -328,6 +316,5 @@ return {
   polish = function()
     vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"])
     vim.opt.mps:append "<:>"
-    -- vim.opt.mps:append("$:$")
   end,
 }
