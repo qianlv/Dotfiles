@@ -98,6 +98,7 @@ return {
           "--enable-config",
           "--function-arg-placeholders",
           "--cross-file-rename",
+          "--fallback-style=Webkit",
           "-j=4",
         },
         single_file_support = true,
@@ -184,22 +185,7 @@ return {
 
     "AstroNvim/astrocommunity",
     { import = "astrocommunity.completion.copilot-lua" },
-    {
-      -- further customize the options set by the community
-      "copilot.lua",
-      opts = {
-        suggestion = {
-          keymap = {
-            accept = "<C-l>",
-            accept_word = false,
-            accept_line = false,
-            next = "<C-.>",
-            prev = "<C-,>",
-            dismiss = "<C/>",
-          },
-        },
-      },
-    },
+    { import = "astrocommunity.completion.copilot-lua-cmp" },
     {
       "nvim-telescope/telescope.nvim",
       opts = {
@@ -261,12 +247,6 @@ return {
 
       opts = function(_, opts)
         local cmp = require "cmp"
-        local _, luasnip = pcall(require, "luasnip")
-        local function has_words_before()
-          local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-          return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
-        end
-
         local sources = {
           { name = "calc" },
           {
@@ -275,19 +255,6 @@ return {
           },
         }
         opts.sources = cmp.config.sources(vim.list_extend(opts.sources, sources))
-        opts.mapping["<Tab>"] = cmp.mapping(function(fallback)
-          if require("copilot.suggestion").is_visible() then
-            require("copilot.suggestion").accept()
-          elseif cmp.visible() then
-            cmp.select_next_item()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          elseif has_words_before() then
-            cmp.complete()
-          else
-            fallback()
-          end
-        end, { "i", "s" })
         opts.mapping["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" })
         opts.mapping["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" })
         return opts
