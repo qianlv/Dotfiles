@@ -78,6 +78,9 @@ if [[ -z "$TMUX" ]]; then
     export TERM="xterm-256color"
 fi
 
+# change pycache to /tmp
+export PYTHONPYCACHEPREFIX=/tmp/pycache
+
 export PATH=$HOME/.local/bin/:$PATH
 
 case "$OSTYPE" in
