@@ -139,6 +139,16 @@ return {
   },
 
   plugins = {
+    "AstroNvim/astrocommunity",
+    { import = "astrocommunity.completion.copilot-lua" },
+    { import = "astrocommunity.completion.copilot-lua-cmp" },
+    { import = "astrocommunity.utility.transparent-nvim" },
+    { import = "astrocommunity.pack.rust" },
+    { import = "astrocommunity.pack.cpp" },
+    { import = "astrocommunity.pack.bash" },
+    { import = "astrocommunity.pack.python" },
+    { import = "astrocommunity.pack.java" },
+
     {
       "sainnhe/gruvbox-material",
       config = function()
@@ -183,23 +193,6 @@ return {
       },
     },
 
-    "AstroNvim/astrocommunity",
-    { import = "astrocommunity.completion.copilot-lua" },
-    { import = "astrocommunity.completion.copilot-lua-cmp" },
-    {
-      "nvim-telescope/telescope.nvim",
-      opts = {
-        pickers = {
-          man_pages = { sections = { "1", "2", "3" } },
-        },
-      },
-    },
-    { import = "astrocommunity.utility.transparent-nvim" },
-    { import = "astrocommunity.pack.rust" },
-    { import = "astrocommunity.pack.cpp" },
-    { import = "astrocommunity.pack.bash" },
-    { import = "astrocommunity.pack.python" },
-    { import = "astrocommunity.pack.java" },
     {
       "nvim-jdtls",
       opts = {
@@ -215,6 +208,7 @@ return {
         },
       },
     },
+
     {
       "hrsh7th/nvim-cmp",
       dependencies = {
@@ -274,6 +268,36 @@ return {
       opts = {
         background_colour = "#000000",
       },
+    },
+
+    {
+      "nvim-telescope/telescope.nvim",
+      opts = {
+        pickers = {
+          man_pages = { sections = { "1", "2", "3" } },
+        },
+      },
+    },
+
+    {
+      "Badhi/nvim-treesitter-cpp-tools",
+      ft = { "h", "cpp", "hpp", "c", "cc", "cxx" },
+      depends = { "nvim-treesitter/nvim-treesitter" },
+      config = function()
+        require("nt-cpp-tools").setup {
+          preview = {
+            quit = "q", -- optional keymapping for quit preview
+            accept = "<tab>", -- optional keymapping for accept preview
+          },
+          header_extension = "h", -- optional
+          source_extension = "cpp", -- optional
+          custom_define_class_function_commands = { -- optional
+            TSCppImplWrite = {
+              output_handle = require("nt-cpp-tools.output_handlers").get_add_to_cpp(),
+            },
+          },
+        }
+      end,
     },
   },
 
