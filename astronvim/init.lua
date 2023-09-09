@@ -1,3 +1,4 @@
+local utils = require "astronvim.utils"
 return {
   options = {
     opt = {
@@ -33,14 +34,6 @@ return {
         function() require("Comment.api").toggle.linewise.count(vim.v.count > 0 and vim.v.count or 1) end,
         desc = "Comment line",
       },
-      ["<A-j>"] = {
-        "<cmd>m .+1<CR>==",
-        desc = "Move line down",
-      },
-      ["<A-k>"] = {
-        "<cmd>m .-2<CR>==",
-        desc = "Move line up",
-      },
       ["<esc>"] = {
         "<cmd>nohl<cr>",
       },
@@ -50,25 +43,8 @@ return {
         "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>",
         desc = "Toggle comment line",
       },
-      ["<A-j>"] = {
-        "<cmd>m '>+1<CR>gv=gv",
-        desc = "Move line down",
-      },
-      ["<A-k>"] = {
-        "<cmd>m '<-2<CR>gv=gv",
-        desc = "Move line up",
-      },
     },
-    i = {
-      ["<A-j>"] = {
-        "<esc><cmd>m .+1<CR>==gi",
-        desc = "Move line down",
-      },
-      ["<A-k>"] = {
-        "<esc><cmd>m .-2<CR>==gi",
-        desc = "Move line up",
-      },
-    },
+    i = {},
   },
 
   lsp = {
@@ -142,7 +118,10 @@ return {
     "AstroNvim/astrocommunity",
     { import = "astrocommunity.completion.copilot-lua" },
     { import = "astrocommunity.completion.copilot-lua-cmp" },
+    { import = "astrocommunity.completion.cmp-cmdline" },
     { import = "astrocommunity.utility.transparent-nvim" },
+    { import = "astrocommunity.editing-support.vim-move"},
+    { import = "astrocommunity.editing-support.rainbow-delimiters-nvim"},
     { import = "astrocommunity.pack.rust" },
     { import = "astrocommunity.pack.cpp" },
     { import = "astrocommunity.pack.bash" },
@@ -194,6 +173,16 @@ return {
     },
 
     {
+      "williamboman/mason-lspconfig.nvim",
+      opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "asm_lsp") end,
+    },
+
+    {
+      "jay-babu/mason-null-ls.nvim",
+      opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "asmfmt") end,
+    },
+
+    {
       "nvim-jdtls",
       opts = {
         settings = {
@@ -224,15 +213,16 @@ return {
               document_command = "wn %s -over",
               async = false,
               sqlite = false,
-              max_items = 7,
+              max_items = 20,
               capacity = 7,
               debug = false,
             }
 
             dict.switcher {
               spelllang = {
-                -- en = "/home/qianlv/.config/english.dict",
-                en = "/home/qianlv/.config/google-10000-english.txt",
+                en = "/home/qianlv/.config/english.dict",
+                -- en = "/home/qianlv/.config/largest_possible_aspell_wordlist_without_diacritic.txt",
+                -- en = "/home/qianlv/.config/google-10000-english.txt",
               },
             }
           end,
