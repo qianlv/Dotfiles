@@ -3,18 +3,20 @@ return {
   options = {
     opt = {
       -- cmdheight = 1,
-      -- listchars = { tab = "»·", trail = "·", extends = "…", precedes = "…", nbsp = "␣" },
+      listchars = { tab = "»·", trail = "·", extends = "…", precedes = "…", nbsp = "␣" },
       list = true,
       foldcolumn = "0",
-      signcolumn = "no",
+      signcolumn = "yes",
       smarttab = true,
       autoindent = true,
+      expandtab = true,
       backspace = { "indent", "eol", "start" },
       mouse = "", -- forbid mouse
+      mps = vim.opt.mps + { "<:>" },
     },
     g = {
       icons_enabled = true,
-      diagnostics_mode = 2,
+      -- diagnostics_mode = 2,
     },
   },
 
@@ -36,6 +38,10 @@ return {
       },
       ["<esc>"] = {
         "<cmd>nohl<cr>",
+      },
+      ["<leader>ti"] = {
+        function() utils.toggle_term_cmd "ipython" end,
+        desc = "ToggleTerm ipython",
       },
     },
     v = {
@@ -116,12 +122,12 @@ return {
 
   plugins = {
     "AstroNvim/astrocommunity",
-    { import = "astrocommunity.completion.copilot-lua" },
     { import = "astrocommunity.completion.copilot-lua-cmp" },
     { import = "astrocommunity.completion.cmp-cmdline" },
-    { import = "astrocommunity.utility.transparent-nvim" },
-    { import = "astrocommunity.editing-support.vim-move"},
-    { import = "astrocommunity.editing-support.rainbow-delimiters-nvim"},
+    { import = "astrocommunity.color.transparent-nvim" },
+    { import = "astrocommunity.editing-support.vim-move" },
+    { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
+    { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
     { import = "astrocommunity.pack.rust" },
     { import = "astrocommunity.pack.cpp" },
     { import = "astrocommunity.pack.bash" },
@@ -184,18 +190,15 @@ return {
 
     {
       "nvim-jdtls",
-      opts = {
-        settings = {
-          java = {
-            project = {
-              referencedLibraries = {
-                "lib/**/*.jar",
-                "/usr/share/java/*.jar",
-              },
-            },
+      opts = function(_, opts)
+        opts.settings.java["project"] = {
+          referencedLibraries = {
+            "lib/**/*.jar",
+            "/usr/share/java/*.jar",
           },
-        },
-      },
+        }
+        return opts
+      end,
     },
 
     {
@@ -296,6 +299,6 @@ return {
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
     vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"])
-    vim.opt.mps:append "<:>"
+    -- vim.opt.mps:append "<:>"
   end,
 }
