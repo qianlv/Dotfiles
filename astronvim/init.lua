@@ -133,6 +133,7 @@ return {
     { import = "astrocommunity.pack.bash" },
     { import = "astrocommunity.pack.python" },
     { import = "astrocommunity.pack.java" },
+    { import = "astrocommunity.pack.markdown" },
 
     {
       "sainnhe/gruvbox-material",
@@ -299,6 +300,5 @@ return {
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
     vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"])
-    -- vim.opt.mps:append "<:>"
   end,
 }
