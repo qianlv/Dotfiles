@@ -8,8 +8,9 @@ return {
       foldcolumn = "0",
       signcolumn = "yes",
       smarttab = true,
-      autoindent = true,
       expandtab = true,
+      smartindent = true,
+      autoindent = true,
       backspace = { "indent", "eol", "start" },
       mouse = "", -- forbid mouse
       mps = vim.opt.mps + { "<:>" },
@@ -80,7 +81,8 @@ return {
           "--enable-config",
           "--function-arg-placeholders",
           "--cross-file-rename",
-          "--fallback-style=Webkit",
+          -- "--fallback-style=Webkit",
+          "--fallback-style=Google",
           "-j=4",
         },
         single_file_support = true,
@@ -117,12 +119,29 @@ return {
           root_dir = require("lspconfig.util").root_pattern("*.rkt", ".git"),
         }
       end,
+
+      asm_lsp = function()
+        return {
+          cmd = { "asm-lsp" },
+          filetypes = { "asm" },
+          root_dir = require("lspconfig.util").root_pattern("*.asm", "*.s", "*.S", ".git"),
+        }
+      end,
     },
   },
 
   plugins = {
     "AstroNvim/astrocommunity",
     { import = "astrocommunity.completion.copilot-lua-cmp" },
+    {
+      "zbirenbaum/copilot.lua",
+      opts = function(_, opts)
+        opts.filetypes = {
+          markdown = true,
+        }
+        return opts
+      end,
+    },
     { import = "astrocommunity.completion.cmp-cmdline" },
     { import = "astrocommunity.color.transparent-nvim" },
     { import = "astrocommunity.editing-support.vim-move" },
@@ -293,6 +312,14 @@ return {
         }
       end,
     },
+    {
+      "NMAC427/guess-indent.nvim",
+      config = function()
+        require("guess-indent").setup {
+          auto_cmd = false,
+        }
+      end,
+    }
   },
 
   -- This function is run last and is a good place to configuring
