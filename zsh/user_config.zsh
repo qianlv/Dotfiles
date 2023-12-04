@@ -49,8 +49,8 @@ antibody bundle romkatv/powerlevel10k
 antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle Aloxaf/fzf-tab
-antibody bundle zpm-zsh/clipboard
 antibody bundle skywind3000/z.lua
+antibody bundle soimort/translate-shell
 export _ZL_MATCH_MODE=1 # z.lua enhanced mode
 
 # https://github.com/sharkdp/vivid
@@ -72,6 +72,8 @@ alias bclang='bear -- clang'
 alias bclang++='bear -- clang++'
 alias open='open_command'
 alias tmux='tmux -2'
+alias pbcopy=clipcopy
+alias pbpaste=clippaste
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#9ed072,bold'
 if [[ -z "$TMUX" ]]; then
@@ -104,9 +106,6 @@ case "$OSTYPE" in
             # wslg
             export DISPLAY=:0
             # export LIBGL_ALWAYS_INDIRECT=1
-        else
-            alias pbcopy='xsel --clipboard --input'
-            alias pbpaste='xsel --clipboard --output'
         fi
         ;;
 esac
