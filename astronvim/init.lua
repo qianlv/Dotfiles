@@ -7,6 +7,9 @@ return {
       list = true,
       foldcolumn = "0",
       signcolumn = "yes",
+      -- tabstop = 4,
+      -- shiftwidth = 4,
+      -- softtabstop = 4,
       smarttab = true,
       expandtab = true,
       smartindent = true,
@@ -153,6 +156,7 @@ return {
     { import = "astrocommunity.pack.python" },
     { import = "astrocommunity.pack.java" },
     { import = "astrocommunity.pack.markdown" },
+    { import = "astrocommunity.pack.html-css"},
 
     {
       "sainnhe/gruvbox-material",
@@ -205,7 +209,10 @@ return {
 
     {
       "jay-babu/mason-null-ls.nvim",
-      opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "asmfmt") end,
+      opts = function(_, opts)
+        opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "asmfmt")
+        opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "markuplint")
+      end,
     },
 
     {
