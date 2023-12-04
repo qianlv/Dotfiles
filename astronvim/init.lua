@@ -156,7 +156,7 @@ return {
     { import = "astrocommunity.pack.python" },
     { import = "astrocommunity.pack.java" },
     { import = "astrocommunity.pack.markdown" },
-    { import = "astrocommunity.pack.html-css"},
+    { import = "astrocommunity.pack.html-css" },
 
     {
       "sainnhe/gruvbox-material",
@@ -188,6 +188,7 @@ return {
           -- null_ls.builtins.formatting.autopep8,
           -- null_ls.builtins.formatting.black,
           null_ls.builtins.diagnostics.clang_check,
+          null_ls.builtins.hover.dictionary,
         }
         return config -- return final config table
       end,
@@ -326,13 +327,22 @@ return {
           auto_cmd = false,
         }
       end,
-    }
+    },
+    {
+      "NvChad/nvim-colorizer.lua",
+      opts = function(_, opts)
+        opts.filetypes = {
+          "*",
+          css = { names = true, css = true, css_fn = true },
+          html = { names = true },
+        }
+        return opts
+      end,
+    },
   },
 
   -- This function is run last and is a good place to configuring
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
-  polish = function()
-    vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"])
-  end,
+  polish = function() vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"]) end,
 }
