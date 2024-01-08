@@ -74,6 +74,7 @@ alias open='open_command'
 alias tmux='tmux -2'
 alias pbcopy=clipcopy
 alias pbpaste=clippaste
+alias transcn="trans -t zh-CN"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#9ed072,bold'
 if [[ -z "$TMUX" ]]; then
@@ -135,8 +136,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 # zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
 ASTRO_CONFIG=~/.config/astronvim
-# alias astro="XDG_CONFIG_HOME=$ASTRO_CONFIG/config XDG_DATA_HOME=$ASTRO_CONFIG/data XDG_STATE_HOME=$ASTRO_CONFIG/state XDG_CACHE_HOME=$ASTRO_CONFIG/cache nvim"
-alias astro="XDG_CONFIG_HOME=$ASTRO_CONFIG/config nvim"
+alias astro="NVIM_APPNAME=astronvim nvim"
 
 # core dump location
 # ulimit -c unlimited
