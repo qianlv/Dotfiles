@@ -150,6 +150,8 @@ return {
     { import = "astrocommunity.editing-support.vim-move" },
     { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
     { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
+    { import = "astrocommunity.lsp.lsp-signature-nvim" },
+    { import = "astrocommunity.pack.lua" },
     { import = "astrocommunity.pack.rust" },
     { import = "astrocommunity.pack.cpp" },
     { import = "astrocommunity.pack.bash" },
@@ -157,6 +159,7 @@ return {
     { import = "astrocommunity.pack.java" },
     { import = "astrocommunity.pack.markdown" },
     { import = "astrocommunity.pack.html-css" },
+    { import = "astrocommunity.pack.typescript" },
 
     {
       "sainnhe/gruvbox-material",
@@ -195,15 +198,6 @@ return {
     },
 
     {
-      "nvim-treesitter/nvim-treesitter",
-      opts = {
-        indent = {
-          -- disable = { "python" },
-        },
-      },
-    },
-
-    {
       "williamboman/mason-lspconfig.nvim",
       opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "asm_lsp") end,
     },
@@ -238,14 +232,14 @@ return {
           config = function()
             local dict = require "cmp_dictionary"
             dict.setup {
-              exact = 3,
+              exact = 2,
               first_case_insensitive = false,
               document = true,
               document_command = "wn %s -over",
               async = false,
               sqlite = false,
-              max_items = 20,
-              capacity = 7,
+              max_items = -1,
+              capacity = 5,
               debug = false,
             }
 
@@ -259,7 +253,6 @@ return {
           end,
         },
       },
-
       opts = function(_, opts)
         local cmp = require "cmp"
         local sources = {
@@ -267,11 +260,32 @@ return {
           {
             name = "dictionary",
             keyword_length = 2,
+            priority = 300,
           },
         }
+
         opts.sources = cmp.config.sources(vim.list_extend(opts.sources, sources))
         opts.mapping["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" })
         opts.mapping["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" })
+        local lspkind = require "lspkind"
+        opts.formatting.fields = {
+          "abbr",
+          "menu",
+          "kind",
+        }
+        opts.formatting.format = lspkind.cmp_format {
+          mode = "text_symbol",
+          menu = {
+            buffer = "[Buffer]",
+            nvim_lsp = "[LSP]",
+            nvim_lua = "[Lua]",
+            luasnip = "[Snip]",
+            path = "[Path]",
+            calc = "[Calc]",
+            dictionary = "[Dict]",
+          },
+        }
+
         return opts
       end,
     },
@@ -303,7 +317,7 @@ return {
     {
       "Badhi/nvim-treesitter-cpp-tools",
       ft = { "h", "cpp", "hpp", "c", "cc", "cxx" },
-      depends = { "nvim-treesitter/nvim-treesitter" },
+      dependencies = { "nvim-treesitter/nvim-treesitter" },
       config = function()
         require("nt-cpp-tools").setup {
           preview = {
@@ -328,6 +342,7 @@ return {
         }
       end,
     },
+
     {
       "NvChad/nvim-colorizer.lua",
       opts = function(_, opts)
