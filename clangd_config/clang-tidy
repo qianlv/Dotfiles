@@ -1,4 +1,5 @@
 # https://clang.llvm.org/extra/clang-tidy/checks/list.html
+# https://hokein.github.io/clang-tools-tutorial/clang-tidy.html
 Checks: >
     '-*,
     bugprone-*,
@@ -28,6 +29,7 @@ Checks: >
     -hicpp-vararg,
     misc-*,
     modernize-*,
+    -modernize-use-trailing-return-type,
     performance-*,
     readability-*,
     -readability-named-parameter'
