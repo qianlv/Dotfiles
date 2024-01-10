@@ -1,5 +1,6 @@
 # https://clang.llvm.org/extra/clang-tidy/checks/list.html
 # https://hokein.github.io/clang-tools-tutorial/clang-tidy.html
+# modified from https://gist.github.com/flamewing/a5016645064afa086ac8afd98ea7f627#file-dot-clang-tidy
 Checks: >
     '-*,
     bugprone-*,
