@@ -232,27 +232,18 @@ return {
           config = function()
             local dict = require "cmp_dictionary"
             dict.setup {
-              exact = 2,
-              first_case_insensitive = false,
-              document = true,
-              document_command = "wn %s -over",
-              async = false,
-              sqlite = false,
-              max_items = -1,
-              capacity = 5,
-              debug = false,
-            }
-
-            dict.switcher {
-              spelllang = {
-                en = "/home/qianlv/.config/english.dict",
-                -- en = "/home/qianlv/.config/largest_possible_aspell_wordlist_without_diacritic.txt",
-                -- en = "/home/qianlv/.config/google-10000-english.txt",
-              },
+              paths = {"/home/qianlv/.config/english.dict"},
+              exact_length = 2,
+	            first_case_insensitive = true,
+	            document = {
+	              enable = true,
+	              command = { "wn", "${label}", "-over" },
+	            },
             }
           end,
         },
       },
+
       opts = function(_, opts)
         local cmp = require "cmp"
         local sources = {
