@@ -39,6 +39,7 @@ plugins=(
     ripgrep
     sudo
     virtualenv
+    # npm
 )
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -51,6 +52,8 @@ antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle Aloxaf/fzf-tab
 antibody bundle skywind3000/z.lua
 antibody bundle soimort/translate-shell
+antibody bundle zsh-users/zsh-completions
+antibody bundle lukechilds/zsh-better-npm-completion
 export _ZL_MATCH_MODE=1 # z.lua enhanced mode
 
 # https://github.com/sharkdp/vivid
@@ -133,10 +136,35 @@ bindkey '^h' fzf-man-widget
 zle -N fzf-man-widget
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-# zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+# switch tmux session at shell
+tm() {
+  if [ -z $1 ]; then
+    tmux switch-client -l
+  else
+    if [ -z "$TMUX" ]; then
+      tmux new-session -As $1
+    else
+      if ! tmux has-session -t $1 2>/dev/null; then
+        TMUX= tmux new-session -ds $1
+      fi
+      tmux switch-client -t $1
+    fi
+  fi
+}
+
+_tmux_complete_session() {
+  local IFS=$'\n'
+  local cur=${COMP_WORDS[COMP_CWORD]}
+  COMPREPLY=( ${COMPREPLY[@]:-} $(compgen -W "$(tmux -q list-sessions | cut -f 1 -d ':')" -- "${cur}") )
+}
+complete -F _tmux_complete_session tm
 
 ASTRO_CONFIG=~/.config/astronvim
 alias astro="NVIM_APPNAME=astronvim nvim"
+
+# This loads nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # core dump location
 # ulimit -c unlimited
