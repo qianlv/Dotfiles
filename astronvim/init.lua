@@ -25,6 +25,7 @@ return {
   },
 
   colorscheme = "gruvbox-material",
+  -- colorscheme = "dracula",
 
   mappings = {
     n = {
@@ -77,16 +78,43 @@ return {
           "clangd",
           "--background-index",
           "--clang-tidy",
-          "--completion-style=bundled",
+          "--clang-tidy-checks=performance-*, bugprone-*, misc-*, google-*, readability-*, portability-*",
+          "--all-scopes-completion",
+          "--completion-parse=auto",
+          "--completion-style=detailed",
           "--header-insertion=iwyu",
           "--pch-storage=memory",
+          "--ranking-model=decision_forest",
           "--suggest-missing-includes",
-          "--enable-config",
           "--function-arg-placeholders",
           "--cross-file-rename",
+          "--enable-config",
           -- "--fallback-style=Webkit",
           "--fallback-style=Google",
           "-j=4",
+        },
+        fallbackFlags = {
+          "-pedantic",
+          "-Wall",
+          "-Wextra",
+          "-Wcast-align",
+          "-Wdouble-promotion",
+          "-Wformat=2",
+          "-Wimplicit-fallthrough",
+          "-Wmisleading-indentation",
+          "-Wnon-virtual-dtor",
+          "-Wnull-dereference",
+          "-Wold-style-cast",
+          "-Woverloaded-virtual",
+          "-Wpedantic",
+          "-Wshadow",
+          "-Wunused",
+          "-pthread",
+          "-fuse-ld=lld",
+          "-fsanitize=address",
+          "-fsanitize=undefined",
+          -- "-stdlib=libc++",
+          "-std=c++20",
         },
         single_file_support = true,
       },
@@ -145,21 +173,28 @@ return {
         return opts
       end,
     },
+
     { import = "astrocommunity.completion.cmp-cmdline" },
+    { import = "astrocommunity.indent.mini-indentscope" },
     { import = "astrocommunity.color.transparent-nvim" },
+
     { import = "astrocommunity.editing-support.vim-move" },
     { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
+
     { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
     { import = "astrocommunity.lsp.lsp-signature-nvim" },
+
     { import = "astrocommunity.pack.lua" },
     { import = "astrocommunity.pack.rust" },
     { import = "astrocommunity.pack.cpp" },
     { import = "astrocommunity.pack.bash" },
-    { import = "astrocommunity.pack.python" },
+    { import = "astrocommunity.pack.python-ruff" },
     { import = "astrocommunity.pack.java" },
     { import = "astrocommunity.pack.markdown" },
     { import = "astrocommunity.pack.html-css" },
     { import = "astrocommunity.pack.typescript" },
+
+    { import = "astrocommunity.colorscheme.dracula-nvim" },
 
     {
       "sainnhe/gruvbox-material",
@@ -232,13 +267,13 @@ return {
           config = function()
             local dict = require "cmp_dictionary"
             dict.setup {
-              paths = {"/home/qianlv/.config/english.dict"},
+              paths = { "/home/qianlv/.config/english.dict" },
               exact_length = 2,
-	            first_case_insensitive = true,
-	            document = {
-	              enable = true,
-	              command = { "wn", "${label}", "-over" },
-	            },
+              first_case_insensitive = true,
+              document = {
+                enable = true,
+                command = { "wn", "${label}", "-over" },
+              },
             }
           end,
         },
