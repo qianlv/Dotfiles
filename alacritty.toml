@@ -1,0 +1,67 @@
+import = [
+  "C:\\Users\\qianl\\AppData\\Roaming\\alacritty\\themes\\themes\\dracula.toml"
+]
+
+[env]
+TERM = "screen-256color"
+
+[font]
+size = 15
+
+[font.bold]
+family = "Hack Nerd Font Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "Hack Nerd Font Mono"
+style = "Bold Italic"
+
+[font.italic]
+family = "Hack Nerd Font Mono"
+style = "Italic"
+
+[font.normal]
+family = "Hack Nerd Font Mono"
+style = "Regular"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[shell]
+program = "wsl.exe ~"
+
+[window]
+decorations = "none"
+padding = { x = 4, y = 4 }
+dynamic_padding = true
+resize_increments = true
+position = { x = 1000, y = 500 }
+dimensions = { columns = 100, lines = 30 }
+
+# https://superuser.com/questions/1440876/alacritty-tmux-cant-copy-big-portion-of-text-in-copy-mode
+# disable OSC 52 escape sequence
+# tmux will still copy to clipboard
+[terminal]
+osc52 = "Disabled"
+
+
+[[keyboard.bindings]]
+action = "Minimize"
+key = "m"
+mods = "Control | Shift"
+
+[[keyboard.bindings]]
+action = "Quit"
+key = "w"
+mods = "Control | Shift"
+
+[[keyboard.bindings]]
+action = "CreateNewWindow"
+key = "n"
+mods = "Control | Shift"
+
+[[keyboard.bindings]]
+action = "ToggleMaximized"
+key = "l"
+mods = "Control | Shift"
