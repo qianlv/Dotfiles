@@ -59,7 +59,7 @@ export _ZL_MATCH_MODE=1 # z.lua enhanced mode
 # https://github.com/sharkdp/vivid
 # cargo install vivid
 if [[ -x "$(command -v vivid)" ]]; then
-    export LS_COLORS="$(vivid generate molokai)"
+    export LS_COLORS="$(vivid generate dracula)"
 fi
 
 export LANG=en_US.UTF-8

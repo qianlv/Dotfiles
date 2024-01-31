@@ -24,8 +24,8 @@ return {
     },
   },
 
-  colorscheme = "gruvbox-material",
-  -- colorscheme = "dracula",
+  -- colorscheme = "gruvbox-material",
+  colorscheme = "dracula",
 
   mappings = {
     n = {
@@ -254,6 +254,9 @@ return {
             "/usr/share/java/*.jar",
           },
         }
+        local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", ".project", ".idea" }
+        opts.root_dir = require("jdtls.setup").find_root(root_markers)
+        -- print(vim.inspect(opts))
         return opts
       end,
     },
