@@ -17,10 +17,11 @@ return {
       backspace = { "indent", "eol", "start" },
       mouse = "", -- forbid mouse
       mps = vim.opt.mps + { "<:>" },
+      clipboard = "",
     },
     g = {
       icons_enabled = true,
-      -- diagnostics_mode = 2,
+      diagnostics_mode = 1,
     },
   },
 
@@ -256,7 +257,6 @@ return {
         }
         local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", ".project", ".idea" }
         opts.root_dir = require("jdtls.setup").find_root(root_markers)
-        -- print(vim.inspect(opts))
         return opts
       end,
     },
@@ -296,24 +296,24 @@ return {
         opts.sources = cmp.config.sources(vim.list_extend(opts.sources, sources))
         opts.mapping["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" })
         opts.mapping["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" })
-        local lspkind = require "lspkind"
-        opts.formatting.fields = {
-          "abbr",
-          "menu",
-          "kind",
-        }
-        opts.formatting.format = lspkind.cmp_format {
-          mode = "text_symbol",
-          menu = {
-            buffer = "[Buffer]",
-            nvim_lsp = "[LSP]",
-            nvim_lua = "[Lua]",
-            luasnip = "[Snip]",
-            path = "[Path]",
-            calc = "[Calc]",
-            dictionary = "[Dict]",
-          },
-        }
+        -- local lspkind = require "lspkind"
+        -- opts.formatting.fields = {
+        --   "abbr",
+        --   "menu",
+        --   "kind",
+        -- }
+        -- opts.formatting.format = lspkind.cmp_format {
+        --   mode = "text_symbol",
+        --   menu = {
+        --     buffer = "[Buffer]",
+        --     nvim_lsp = "[LSP]",
+        --     nvim_lua = "[Lua]",
+        --     luasnip = "[Snip]",
+        --     path = "[Path]",
+        --     calc = "[Calc]",
+        --     dictionary = "[Dict]",
+        --   },
+        -- }
 
         return opts
       end,
@@ -388,5 +388,51 @@ return {
   -- This function is run last and is a good place to configuring
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
-  polish = function() vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"]) end,
+  polish = function()
+    vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"])
+    vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+      desc = "Lazy load clipboard",
+      once = true,
+      callback = function()
+        if vim.fn.has "win32" == 1 or vim.fn.has "wsl" == 1 then
+          vim.g.clipboard = {
+            copy = {
+              ["+"] = "win32yank.exe -i --crlf",
+              ["*"] = "win32yank.exe -i --crlf",
+            },
+            paste = {
+              ["+"] = "win32yank.exe -o --lf",
+              ["*"] = "win32yank.exe -o --lf",
+            },
+          }
+        elseif vim.fn.has "unix" == 1 then
+          if vim.fn.executable "xclip" == 1 then
+            vim.g.clipboard = {
+              copy = {
+                ["+"] = "xclip -selection clipboard",
+                ["*"] = "xclip -selection clipboard",
+              },
+              paste = {
+                ["+"] = "xclip -selection clipboard -o",
+                ["*"] = "xclip -selection clipboard -o",
+              },
+            }
+          elseif vim.fn.executable "xsel" == 1 then
+            vim.g.clipboard = {
+              copy = {
+                ["+"] = "xsel --clipboard --input",
+                ["*"] = "xsel --clipboard --input",
+              },
+              paste = {
+                ["+"] = "xsel --clipboard --output",
+                ["*"] = "xsel --clipboard --output",
+              },
+            }
+          end
+        end
+
+        vim.opt.clipboard = "unnamedplus"
+      end,
+    })
+  end,
 }
