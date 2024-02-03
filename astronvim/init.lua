@@ -25,8 +25,8 @@ return {
     },
   },
 
-  -- colorscheme = "gruvbox-material",
-  colorscheme = "dracula",
+  colorscheme = "gruvbox-material",
+  -- colorscheme = "dracula",
 
   mappings = {
     n = {
@@ -124,10 +124,11 @@ return {
           ["rust-analyzer"] = {
             cargo = {
               loadOutDirsFromCheck = true,
-              features = "all",
             },
             checkOnSave = {
               command = "clippy",
+              allFeatures = true,
+              extraArgs = { "--no-deps" },
             },
             procMacro = {
               enable = true,
@@ -182,7 +183,6 @@ return {
     { import = "astrocommunity.editing-support.vim-move" },
     { import = "astrocommunity.editing-support.rainbow-delimiters-nvim" },
 
-    { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
     { import = "astrocommunity.lsp.lsp-signature-nvim" },
 
     { import = "astrocommunity.pack.lua" },
@@ -194,6 +194,7 @@ return {
     { import = "astrocommunity.pack.markdown" },
     { import = "astrocommunity.pack.html-css" },
     { import = "astrocommunity.pack.typescript" },
+    { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
 
     { import = "astrocommunity.colorscheme.dracula-nvim" },
 
@@ -296,25 +297,6 @@ return {
         opts.sources = cmp.config.sources(vim.list_extend(opts.sources, sources))
         opts.mapping["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" })
         opts.mapping["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" })
-        -- local lspkind = require "lspkind"
-        -- opts.formatting.fields = {
-        --   "abbr",
-        --   "menu",
-        --   "kind",
-        -- }
-        -- opts.formatting.format = lspkind.cmp_format {
-        --   mode = "text_symbol",
-        --   menu = {
-        --     buffer = "[Buffer]",
-        --     nvim_lsp = "[LSP]",
-        --     nvim_lua = "[Lua]",
-        --     luasnip = "[Snip]",
-        --     path = "[Path]",
-        --     calc = "[Calc]",
-        --     dictionary = "[Dict]",
-        --   },
-        -- }
-
         return opts
       end,
     },
@@ -382,6 +364,10 @@ return {
         }
         return opts
       end,
+    },
+    {
+      "lukas-reineke/indent-blankline.nvim",
+      enabled = false,
     },
   },
 
