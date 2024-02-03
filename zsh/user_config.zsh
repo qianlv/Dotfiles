@@ -67,7 +67,7 @@ alias bg++='bear -- g++'
 alias bclang='bear -- clang'
 alias bclang++='bear -- clang++'
 alias open='open_command'
-alias tmux='tmux -2'
+# alias tmux='tmux -2'
 alias pbcopy=clipcopy
 alias pbpaste=clippaste
 alias transcn="trans -t zh-CN"
@@ -81,12 +81,6 @@ export LANG=en_US.UTF-8
 # change pycache to /tmp
 export PYTHONPYCACHEPREFIX=/tmp/pycache
 export PATH=$HOME/.local/bin/:$PATH
-# https://github.com/sharkdp/vivid
-# cargo install vivid
-if [[ -x "$(command -v vivid)" ]]; then
-    export LS_COLORS="$(vivid generate gruvbox-dark)"
-fi
-
 
 case "$OSTYPE" in
     darwin*)
