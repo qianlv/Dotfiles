@@ -56,18 +56,11 @@ antibody bundle zsh-users/zsh-completions
 antibody bundle lukechilds/zsh-better-npm-completion
 export _ZL_MATCH_MODE=1 # z.lua enhanced mode
 
-# https://github.com/sharkdp/vivid
-# cargo install vivid
-if [[ -x "$(command -v vivid)" ]]; then
-    export LS_COLORS="$(vivid generate dracula)"
-fi
-
-export LANG=en_US.UTF-8
 
 # alias
 alias vim='nvim'
 alias rvim='/usr/bin/vim'
-alias bcmake='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1'
+alias bcmake='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 --build build'
 alias bmake='bear -- make'
 alias bgcc='bear -- gcc'
 alias bg++='bear -- g++'
@@ -84,10 +77,16 @@ if [[ -z "$TMUX" ]]; then
     export TERM="xterm-256color"
 fi
 
+export LANG=en_US.UTF-8
 # change pycache to /tmp
 export PYTHONPYCACHEPREFIX=/tmp/pycache
-
 export PATH=$HOME/.local/bin/:$PATH
+# https://github.com/sharkdp/vivid
+# cargo install vivid
+if [[ -x "$(command -v vivid)" ]]; then
+    export LS_COLORS="$(vivid generate gruvbox-dark)"
+fi
+
 
 case "$OSTYPE" in
     darwin*)
