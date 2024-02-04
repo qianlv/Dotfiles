@@ -1,11 +1,9 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
-    [
+    "actions": [
         {
-            "command": 
-            {
+            "command": {
                 "action": "copy",
                 "singleLine": false
             }
@@ -18,8 +16,7 @@
             "keys": "ctrl+shift+f"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "splitPane",
                 "split": "auto",
                 "splitMode": "duplicate"
@@ -46,22 +43,18 @@
     "defaultProfile": "{51855cb2-8cce-5362-8f54-464b92b32386}",
     "experimental.rendering.forceFullRepaint": false,
     "focusFollowMouse": true,
-    "newTabMenu": 
-    [
+    "newTabMenu": [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
-    {
-        "defaults": 
-        {
+    "profiles": {
+        "defaults": {
             "adjustIndistinguishableColors": "indexed",
             "bellStyle": "taskbar",
-            "colorScheme": "rose-pine-dawn",
+            "colorScheme": "Dracula",
             "experimental.retroTerminalEffect": false,
-            "font": 
-            {
+            "font": {
                 "cellHeight": "1.2",
                 "face": "FiraCode Nerd Font Mono",
                 "size": 15.0,
@@ -74,8 +67,7 @@
             "useAcrylic": false,
             "useAtlasEngine": false
         },
-        "list": 
-        [
+        "list": [
             {
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
@@ -127,8 +119,7 @@
             }
         ]
     },
-    "schemes": 
-    [
+    "schemes": [
         {
             "background": "#0C0C0C",
             "black": "#0C0C0C",
@@ -522,66 +513,88 @@
         }
     ],
     "showTabsInTitlebar": true,
-    "theme": "rose-pine-dawn",
-    "themes": 
-    [
+    "theme": "Dracula",
+    "themes": [
+        {
+            "name": "Dracula",
+            "tab": {
+                "background": "#282A36FF",
+                "showCloseButton": "always",
+                "unfocusedBackground": null
+            },
+            "tabRow": {
+                "background": "#44475AFF",
+                "unfocusedBackground": "#32302fFF"
+            },
+            "window": {
+                "applicationTheme": "dark",
+                "useMica": false
+            }
+        },
+        {
+            "name": "gruvbox-dark",
+            "tab": {
+                "background": "#282828FF",
+                "showCloseButton": "always",
+                "unfocusedBackground": null
+            },
+            "tabRow": {
+                "background": "#32302FFF",
+                "unfocusedBackground": "#191A21FF"
+            },
+            "window": {
+                "applicationTheme": "dark",
+                "useMica": false
+            }
+        },
         {
             "name": "rose-pine",
-            "tab": 
-            {
+            "tab": {
                 "background": "#191724FF",
                 "showCloseButton": "always",
                 "unfocusedBackground": null
             },
-            "tabRow": 
-            {
+            "tabRow": {
                 "background": "#26233AFF",
                 "unfocusedBackground": "#908CAAFF"
             },
-            "window": 
-            {
+            "window": {
                 "applicationTheme": "dark",
                 "useMica": false
             }
         },
         {
             "name": "rose-pine-dawn",
-            "tab": 
-            {
+            "tab": {
                 "background": "#FAF4EDFF",
                 "showCloseButton": "always",
                 "unfocusedBackground": null
             },
-            "tabRow": 
-            {
+            "tabRow": {
                 "background": "#F2E9E1FF",
                 "unfocusedBackground": "#797593FF"
             },
-            "window": 
-            {
+            "window": {
                 "applicationTheme": "light",
                 "useMica": false
             }
         },
         {
             "name": "rose-pine-moon",
-            "tab": 
-            {
+            "tab": {
                 "background": "#232136FF",
                 "showCloseButton": "always",
                 "unfocusedBackground": null
             },
-            "tabRow": 
-            {
+            "tabRow": {
                 "background": "#393552FF",
                 "unfocusedBackground": "#908CAAFF"
             },
-            "window": 
-            {
+            "window": {
                 "applicationTheme": "dark",
-                "useMica": false
+                "useMica": true
             }
         }
     ],
-    "useAcrylicInTabRow": true
+    "useAcrylicInTabRow": false
 }
