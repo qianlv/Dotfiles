@@ -1,4 +1,5 @@
 local utils = require "astronvim.utils"
+local italic = false
 return {
   options = {
     opt = {
@@ -18,7 +19,7 @@ return {
       mouse = "", -- forbid mouse
       mps = vim.opt.mps + { "<:>" },
       clipboard = "",
-      background = "light",
+      background = "dark",
     },
     g = {
       icons_enabled = true,
@@ -26,9 +27,9 @@ return {
     },
   },
 
-  -- colorscheme = "gruvbox-material",
+  colorscheme = "gruvbox-material",
   -- colorscheme = "dracula",
-  colorscheme = "rose-pine",
+  -- colorscheme = "rose-pine",
   -- colorscheme = "rose-pine-moon",
 
   mappings = {
@@ -206,24 +207,6 @@ return {
     { import = "astrocommunity.pack.typescript" },
     { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
 
-    { import = "astrocommunity.colorscheme.dracula-nvim" },
-
-    {
-      "sainnhe/gruvbox-material",
-      config = function()
-        vim.g.gruvbox_material_foreground = "mix"
-        vim.g.gruvbox_material_background = "medium"
-        vim.g.gruvbox_material_better_performance = 1
-        vim.g.gruvbox_material_ui_contrast = "high"
-        vim.g.gruvbox_material_enable_bold = 1
-        vim.g.gruvbox_material_enable_italic = 1
-        vim.g.gruvbox_material_disable_italic_comment = 0
-        vim.g.gruvbox_material_diagnostic_text_highlight = 1
-        vim.g.gruvbox_material_diagnostic_line_highlight = 1
-        vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
-      end,
-    },
-
     {
       "jose-elias-alvarez/null-ls.nvim",
       opts = function(_, config)
@@ -377,20 +360,48 @@ return {
         return opts
       end,
     },
+
     {
       "lukas-reineke/indent-blankline.nvim",
       enabled = false,
     },
+
+    -- themes
     {
       "rose-pine/neovim",
       name = "rose-pine",
       opts = function(_, opts)
         opts.styles = {
           bold = true,
-          italic = false,
-          transparency = false,
+          italic = italic,
+          transparency = true,
         }
         return opts
+      end,
+    },
+    {
+      "Mofiqul/dracula.nvim",
+      name = "dracula",
+      opts = function(_, opts)
+        opts.transparent_bg = true
+        opts.italic_comment = italic
+        return opts
+      end,
+    },
+
+    {
+      "sainnhe/gruvbox-material",
+      config = function()
+        vim.g.gruvbox_material_foreground = "mix"
+        vim.g.gruvbox_material_background = "medium"
+        vim.g.gruvbox_material_better_performance = 1
+        vim.g.gruvbox_material_ui_contrast = "high"
+        vim.g.gruvbox_material_enable_bold = 1
+        vim.g.gruvbox_material_enable_italic = italic and 1 or 0
+        vim.g.gruvbox_material_disable_italic_comment = not italic and 1 or 0
+        vim.g.gruvbox_material_diagnostic_text_highlight = 1
+        vim.g.gruvbox_material_diagnostic_line_highlight = 1
+        vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
       end,
     },
   },
