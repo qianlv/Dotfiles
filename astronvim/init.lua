@@ -18,6 +18,7 @@ return {
       mouse = "", -- forbid mouse
       mps = vim.opt.mps + { "<:>" },
       clipboard = "",
+      background = "light",
     },
     g = {
       icons_enabled = true,
@@ -25,8 +26,10 @@ return {
     },
   },
 
-  colorscheme = "gruvbox-material",
+  -- colorscheme = "gruvbox-material",
   -- colorscheme = "dracula",
+  colorscheme = "rose-pine",
+  -- colorscheme = "rose-pine-moon",
 
   mappings = {
     n = {
@@ -49,6 +52,13 @@ return {
         function() utils.toggle_term_cmd "ipython" end,
         desc = "ToggleTerm ipython",
       },
+      -- ["<leader>ih"] = {
+      --   function()
+      --     local lsp = require "vim.lsp"
+      --     lsp.inlay_hint.enable(0, not lsp.inlay_hint.is_enabled())
+      --   end,
+      --   desc = "Toggle inlay hints",
+      -- },
     },
     v = {
       ["<Cr>"] = {
@@ -203,9 +213,11 @@ return {
       config = function()
         vim.g.gruvbox_material_foreground = "mix"
         vim.g.gruvbox_material_background = "medium"
-        vim.g.gruvbox_material_ui_contrast = 1
+        vim.g.gruvbox_material_better_performance = 1
+        vim.g.gruvbox_material_ui_contrast = "high"
         vim.g.gruvbox_material_enable_bold = 1
         vim.g.gruvbox_material_enable_italic = 1
+        vim.g.gruvbox_material_disable_italic_comment = 0
         vim.g.gruvbox_material_diagnostic_text_highlight = 1
         vim.g.gruvbox_material_diagnostic_line_highlight = 1
         vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
@@ -368,6 +380,18 @@ return {
     {
       "lukas-reineke/indent-blankline.nvim",
       enabled = false,
+    },
+    {
+      "rose-pine/neovim",
+      name = "rose-pine",
+      opts = function(_, opts)
+        opts.styles = {
+          bold = true,
+          italic = false,
+          transparency = false,
+        }
+        return opts
+      end,
     },
   },
 
