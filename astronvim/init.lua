@@ -27,8 +27,8 @@ return {
     },
   },
 
-  colorscheme = "gruvbox-material",
-  -- colorscheme = "dracula",
+  -- colorscheme = "gruvbox-material",
+  colorscheme = "dracula",
   -- colorscheme = "rose-pine",
   -- colorscheme = "rose-pine-moon",
 
@@ -156,6 +156,16 @@ return {
           },
         },
       },
+      pyright = function()
+        return {
+          root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "*.py", "setup.cfg", "requirements.txt", ".git"),
+        }
+      end,
+      ruff_lsp = function()
+        return {
+          root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "*.py", "setup.cfg", "requirements.txt", ".git"),
+        }
+      end,
       racket_lsp = function()
         return {
           cmd = { "/usr/bin/racket", "--lib", "racket-langserver" },
@@ -163,7 +173,6 @@ return {
           root_dir = require("lspconfig.util").root_pattern("*.rkt", ".git"),
         }
       end,
-
       asm_lsp = function()
         return {
           cmd = { "asm-lsp" },
