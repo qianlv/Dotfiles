@@ -60,7 +60,7 @@ export _ZL_MATCH_MODE=1 # z.lua enhanced mode
 # alias
 alias vim='nvim'
 alias rvim='/usr/bin/vim'
-alias bcmake='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 --build build'
+alias bcmake='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -B build'
 alias bmake='bear -- make'
 alias bgcc='bear -- gcc'
 alias bg++='bear -- g++'
@@ -108,7 +108,7 @@ case "$OSTYPE" in
 esac
 
 fzf-man-widget() {
-  batman="man {1} | col -bx | bat --language=man --plain --color always --theme=\"Monokai Extended\""
+  batman="man {1} | col -bx | bat --language=man --plain --color always --theme=\"Dracula\""
    man -k . | sort \
    | awk -v cyan=$(tput setaf 6) -v blue=$(tput setaf 4) -v res=$(tput sgr0) -v bld=$(tput bold) '{ $1=cyan bld $1; $2=res blue;} 1' \
    | fzf  \
