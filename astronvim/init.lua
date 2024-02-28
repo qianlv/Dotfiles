@@ -88,6 +88,7 @@ return {
         },
         cmd = {
           "clangd",
+          "-j=4",
           "--background-index",
           "--clang-tidy",
           "--clang-tidy-checks=performance-*, bugprone-*, misc-*, google-*, readability-*, portability-*",
@@ -103,7 +104,6 @@ return {
           "--enable-config",
           -- "--fallback-style=Webkit",
           "--fallback-style=Google",
-          "-j=4",
         },
         fallbackFlags = {
           "-pedantic",
@@ -158,12 +158,24 @@ return {
       },
       pyright = function()
         return {
-          root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "*.py", "setup.cfg", "requirements.txt", ".git"),
+          root_dir = require("lspconfig.util").root_pattern(
+            "pyproject.toml",
+            "*.py",
+            "setup.cfg",
+            "requirements.txt",
+            ".git"
+          ),
         }
       end,
       ruff_lsp = function()
         return {
-          root_dir = require("lspconfig.util").root_pattern("pyproject.toml", "*.py", "setup.cfg", "requirements.txt", ".git"),
+          root_dir = require("lspconfig.util").root_pattern(
+            "pyproject.toml",
+            "*.py",
+            "setup.cfg",
+            "requirements.txt",
+            ".git"
+          ),
         }
       end,
       racket_lsp = function()
@@ -231,7 +243,7 @@ return {
           -- null_ls.builtins.formatting.prettier,
           -- null_ls.builtins.formatting.autopep8,
           -- null_ls.builtins.formatting.black,
-          null_ls.builtins.diagnostics.clang_check,
+          -- null_ls.builtins.diagnostics.clang_check,
           null_ls.builtins.hover.dictionary,
         }
         return config -- return final config table
@@ -393,7 +405,7 @@ return {
       name = "dracula",
       opts = function(_, opts)
         opts.transparent_bg = true
-        opts.italic_comment = italic
+        opts.italic_comment = false
         return opts
       end,
     },
