@@ -1,5 +1,5 @@
 local utils = require "astronvim.utils"
-local italic = false
+local italic = true
 return {
   options = {
     opt = {
@@ -24,13 +24,12 @@ return {
     g = {
       icons_enabled = true,
       diagnostics_mode = 1,
+      python3_host_prog = "/usr/bin/python3",
     },
   },
 
-  -- colorscheme = "gruvbox-material",
-  colorscheme = "dracula",
-  -- colorscheme = "rose-pine",
-  -- colorscheme = "rose-pine-moon",
+  colorscheme = "gruvbox-material",
+  -- colorscheme = "dracula",
 
   mappings = {
     n = {
@@ -53,13 +52,6 @@ return {
         function() utils.toggle_term_cmd "ipython" end,
         desc = "ToggleTerm ipython",
       },
-      -- ["<leader>ih"] = {
-      --   function()
-      --     local lsp = require "vim.lsp"
-      --     lsp.inlay_hint.enable(0, not lsp.inlay_hint.is_enabled())
-      --   end,
-      --   desc = "Toggle inlay hints",
-      -- },
     },
     v = {
       ["<Cr>"] = {
@@ -278,6 +270,7 @@ return {
       end,
     },
 
+
     {
       "hrsh7th/nvim-cmp",
       dependencies = {
@@ -307,12 +300,13 @@ return {
             name = "dictionary",
             keyword_length = 2,
             priority = 300,
-          },
+          }
         }
 
         opts.sources = cmp.config.sources(vim.list_extend(opts.sources, sources))
         opts.mapping["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" })
         opts.mapping["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" })
+
         return opts
       end,
     },
@@ -361,14 +355,6 @@ return {
         }
       end,
     },
-    {
-      "NMAC427/guess-indent.nvim",
-      config = function()
-        require("guess-indent").setup {
-          auto_cmd = false,
-        }
-      end,
-    },
 
     {
       "NvChad/nvim-colorizer.lua",
@@ -389,25 +375,8 @@ return {
 
     -- themes
     {
-      "rose-pine/neovim",
-      name = "rose-pine",
-      opts = function(_, opts)
-        opts.styles = {
-          bold = true,
-          italic = italic,
-          transparency = true,
-        }
-        return opts
-      end,
-    },
-    {
       "Mofiqul/dracula.nvim",
       name = "dracula",
-      opts = function(_, opts)
-        opts.transparent_bg = true
-        opts.italic_comment = false
-        return opts
-      end,
     },
 
     {
