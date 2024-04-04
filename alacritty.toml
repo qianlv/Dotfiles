@@ -1,5 +1,6 @@
 import = [
-  "C:\\Users\\qianl\\AppData\\Roaming\\alacritty\\themes\\themes\\dracula.toml"
+  "C:\\Users\\qianl\\AppData\\Roaming\\alacritty\\themes\\themes\\dracula.toml",
+  # "C:\\Users\\qianl\\AppData\\Roaming\\alacritty\\themes\\themes\\gruvbox_material_medium_dark.toml ",
 ]
 
 [env]
@@ -8,21 +9,28 @@ TERM = "screen-256color"
 [font]
 size = 15
 
+[font.normal]
+family = "Hack Nerd Font Mono"
+# family = "Cascadia Mono"
+# family = "FiraCode Nerd Font Mono"
+
 [font.bold]
 family = "Hack Nerd Font Mono"
-style = "Bold"
+# family = "Cascadia Mono"
+# family = "FiraCode Nerd Font Mono"
 
 [font.bold_italic]
 family = "Hack Nerd Font Mono"
-style = "Bold Italic"
+# family = "Cascadia Mono"
+# family = "FiraCode Nerd Font Mono"
 
 [font.italic]
 family = "Hack Nerd Font Mono"
-style = "Italic"
+# family = "Cascadia Mono"
 
-[font.normal]
-family = "Hack Nerd Font Mono"
-style = "Regular"
+[font.offset]
+x = 1
+y = 0
 
 [scrolling]
 history = 10000
@@ -33,11 +41,12 @@ program = "wsl.exe ~"
 
 [window]
 decorations = "none"
-padding = { x = 4, y = 4 }
+# padding = { x = 4, y = 4 }
 dynamic_padding = true
 resize_increments = true
 position = { x = 1000, y = 500 }
 dimensions = { columns = 100, lines = 30 }
+opacity = 1
 
 # https://superuser.com/questions/1440876/alacritty-tmux-cant-copy-big-portion-of-text-in-copy-mode
 # disable OSC 52 escape sequence
