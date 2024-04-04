@@ -151,9 +151,12 @@ _tmux_complete_session() {
   COMPREPLY=( ${COMPREPLY[@]:-} $(compgen -W "$(tmux -q list-sessions | cut -f 1 -d ':')" -- "${cur}") )
 }
 complete -F _tmux_complete_session tm
+complete -F _tmux_complete_session ta
+complete -F _tmux_complete_session tkss
 
-ASTRO_CONFIG=~/.config/astronvim
-alias astro="NVIM_APPNAME=astronvim nvim"
+
+ASTRO_CONFIG=~/.config/astronvim4
+alias astro="NVIM_APPNAME=astronvim4 nvim"
 
 # This loads nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
