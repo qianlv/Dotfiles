@@ -36,14 +36,21 @@ plugins=(
     pip
     tmux
     fzf
-    ripgrep
     sudo
     virtualenv
-    # npm
+    npm
+    node
+    nodenv
+    gh
+    nvm
 )
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source $ZSH/oh-my-zsh.sh
+
+export PYTHONPYCACHEPREFIX=/tmp/pycache
+export GOBIN=$HOME/go/bin/
+export PATH=$HOME/.local/bin/:$GOBIN:$PATH
+
 source <(antibody init)
 
 antibody bundle romkatv/powerlevel10k
@@ -71,6 +78,7 @@ alias open='open_command'
 alias pbcopy=clipcopy
 alias pbpaste=clippaste
 alias transcn="trans -t zh-CN"
+alias transen="trans -t en"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#9ed072,bold'
 if [[ -z "$TMUX" ]]; then
@@ -79,8 +87,6 @@ fi
 
 export LANG=en_US.UTF-8
 # change pycache to /tmp
-export PYTHONPYCACHEPREFIX=/tmp/pycache
-export PATH=$HOME/.local/bin/:$PATH
 
 case "$OSTYPE" in
     darwin*)
@@ -108,7 +114,7 @@ case "$OSTYPE" in
 esac
 
 fzf-man-widget() {
-  batman="man {1} | col -bx | bat --language=man --plain --color always --theme=\"Dracula\""
+  batman="man {1} | col -bx | bat --language=man --plain --color always --theme=\"gruvbox-dark\""
    man -k . | sort \
    | awk -v cyan=$(tput setaf 6) -v blue=$(tput setaf 4) -v res=$(tput sgr0) -v bld=$(tput bold) '{ $1=cyan bld $1; $2=res blue;} 1' \
    | fzf  \
@@ -127,7 +133,7 @@ fzf-man-widget() {
 # `Ctrl-H` keybinding to launch the widget (this widget works only on zsh, don't know how to do it on bash and fish (additionaly pressing`ctrl-backspace` will trigger the widget to be executed too because both share the same keycode)
 bindkey '^h' fzf-man-widget
 zle -N fzf-man-widget
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # switch tmux session at shell
 tm() {
