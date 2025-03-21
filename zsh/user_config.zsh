@@ -1,3 +1,4 @@
+# cspell: disable
 # Install
 #
 # 1. oh-my-zsh
@@ -26,6 +27,7 @@
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     git
+    golang
     command-not-found
     extract
     colored-man-pages
@@ -36,51 +38,57 @@ plugins=(
     pip
     tmux
     fzf
-    ripgrep
     sudo
     virtualenv
     # npm
 )
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source $ZSH/oh-my-zsh.sh
-source <(antibody init)
 
+source <(antibody init)
+antibody bundle zsh-users/zsh-completions
 antibody bundle romkatv/powerlevel10k
 antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle zsh-users/zsh-autosuggestions
 antibody bundle Aloxaf/fzf-tab
 antibody bundle skywind3000/z.lua
 antibody bundle soimort/translate-shell
-antibody bundle zsh-users/zsh-completions
 antibody bundle lukechilds/zsh-better-npm-completion
 export _ZL_MATCH_MODE=1 # z.lua enhanced mode
 
+source $ZSH/oh-my-zsh.sh
 
 # alias
 alias vim='nvim'
 alias rvim='/usr/bin/vim'
-alias bcmake='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -B build'
+alias cm='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=~/vcpkg/scripts/buildsystems/vcpkg.cmake -B build -GNinja -DCMAKE_BUILD_TYPE=Debug'
+alias cmr='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_TOOLCHAIN_FILE=~/vcpkg/scripts/buildsystems/vcpkg.cmake -B build -GNinja -DCMAKE_BUILD_TYPE=Release'
+alias cmb='cmake --build build'
+alias cmfb='cmake --build build --target clean; cmb'
 alias bmake='bear -- make'
 alias bgcc='bear -- gcc'
 alias bg++='bear -- g++'
 alias bclang='bear -- clang'
 alias bclang++='bear -- clang++'
 alias open='open_command'
-# alias tmux='tmux -2'
+alias tmux='tmux -2'
 alias pbcopy=clipcopy
 alias pbpaste=clippaste
 alias transcn="trans -t zh-CN"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#9ed072,bold'
+export TERM="xterm-256color"
 if [[ -z "$TMUX" ]]; then
     export TERM="xterm-256color"
 fi
 
 export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 # change pycache to /tmp
 export PYTHONPYCACHEPREFIX=/tmp/pycache
 export PATH=$HOME/.local/bin/:$PATH
+export PATH=$PATH:/usr/local/go/bin
+
 
 case "$OSTYPE" in
     darwin*)
